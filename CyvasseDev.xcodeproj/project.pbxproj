@@ -16,6 +16,7 @@
 		0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A91CA071AAF32F700D7B54D /* Images.xcassets */; };
 		0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A91CA091AAF32F700D7B54D /* LaunchScreen.xib */; };
 		0A91CA171AAF32F800D7B54D /* CyvasseDevTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */; };
+		0A91CA261AAF349000D7B54D /* SKCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA251AAF349000D7B54D /* SKCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		0A91CA101AAF32F800D7B54D /* CyvasseDevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyvasseDevTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A91CA151AAF32F800D7B54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyvasseDevTests.m; sourceTree = "<group>"; };
+		0A91CA241AAF349000D7B54D /* SKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKCell.h; path = ../SKCell.h; sourceTree = "<group>"; };
+		0A91CA251AAF349000D7B54D /* SKCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKCell.m; path = ../SKCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 		0A91C9F41AAF32F700D7B54D /* CyvasseDev */ = {
 			isa = PBXGroup;
 			children = (
+				0A91CA201AAF331C00D7B54D /* Classes */,
 				0A91C9F91AAF32F700D7B54D /* AppDelegate.h */,
 				0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */,
 				0A91C9FC1AAF32F700D7B54D /* GameScene.h */,
@@ -125,6 +129,15 @@
 				0A91CA151AAF32F800D7B54D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A91CA201AAF331C00D7B54D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0A91CA241AAF349000D7B54D /* SKCell.h */,
+				0A91CA251AAF349000D7B54D /* SKCell.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +244,7 @@
 				0A91CA031AAF32F700D7B54D /* GameViewController.m in Sources */,
 				0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */,
 				0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */,
+				0A91CA261AAF349000D7B54D /* SKCell.m in Sources */,
 				0A91C9F81AAF32F700D7B54D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

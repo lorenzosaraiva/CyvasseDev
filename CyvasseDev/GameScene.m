@@ -7,39 +7,35 @@
 //
 
 #import "GameScene.h"
+#import "SKCell.h"
 
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
-    /* Setup your scene here */
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    BOOL blackOrWhite = true;
     
-    myLabel.text = @"Hello, World!";
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
-    
-    [self addChild:myLabel];
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            
+            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            SKCell *cell = [SKCell initWithColor:color];
+            cell.line = i;
+            cell.column = j;
+            [self addChild:cell];
+            int a = CGRectGetMidX(self.frame) - 200;
+            int b = CGRectGetMidY(self.frame) + 200;
+            
+            cell.position = CGPointMake(a + j * 30, b - i * 30);
+            blackOrWhite = !blackOrWhite;
+        }
+        blackOrWhite = !blackOrWhite;
+    }
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.xScale = 0.5;
-        sprite.yScale = 0.5;
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
