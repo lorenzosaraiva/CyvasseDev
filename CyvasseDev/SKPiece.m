@@ -10,16 +10,30 @@
 
 @implementation SKPiece
 
-+ (instancetype) initPieceOfType:(PieceType)type{
++ (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player{
 
     SKPiece *newPiece;
-    
     if (type == 0){
         
-        newPiece.pieceType = 0;
+        
         newPiece = [SKPiece spriteNodeWithImageNamed:@"King.png"];
-        newPiece.size = CGSizeMake(30, 30);
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 3;
+        newPiece.size = CGSizeMake(40, 40);
+        
+    }
     
+    if (type == 1){
+    
+       
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"Queen.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 3;
+        newPiece.size = CGSizeMake(40, 40);
+        
+       
     }
     return newPiece;
 

@@ -10,4 +10,11 @@
 
 @interface GameScene : SKScene
 
+typedef enum currentPlayer {
+    
+    Black = 0,
+    White = 1
+    
+} Player;
+
 @end

@@ -13,8 +13,11 @@
 
 @property int line;
 @property int column;
+@property int cellSize;
+@property int index;
 @property (nonatomic) UIColor *cellColor;
 @property (nonatomic) SKPiece *currentPiece;
+
 
 + (instancetype) initWithColor:(UIColor*)color;
 
