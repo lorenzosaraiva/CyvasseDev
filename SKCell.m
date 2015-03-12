@@ -8,13 +8,15 @@
 
 #import "SKCell.h"
 
+
 @implementation SKCell
 
 + (instancetype) initWithColor:(UIColor*)color
 {
     
     SKCell * cell;
-    cell = [SKCell spriteNodeWithColor:color size:CGSizeMake(30, 30)];
+    cell = [SKCell spriteNodeWithColor:color size:CGSizeMake(40, 40)];
+    cell.cellColor = color;
     return cell;
 }
 

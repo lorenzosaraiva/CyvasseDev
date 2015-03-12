@@ -17,6 +17,9 @@
 		0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A91CA091AAF32F700D7B54D /* LaunchScreen.xib */; };
 		0A91CA171AAF32F800D7B54D /* CyvasseDevTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */; };
 		0A91CA261AAF349000D7B54D /* SKCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA251AAF349000D7B54D /* SKCell.m */; };
+		0AE093C71AB12FEE003EBEA2 /* SKPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093C61AB12FEE003EBEA2 /* SKPiece.m */; };
+		0AE093CC1AB1310B003EBEA2 /* Queen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CB1AB1310B003EBEA2 /* Queen.png */; };
+		0AE093CE1AB13111003EBEA2 /* King.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CD1AB13111003EBEA2 /* King.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyvasseDevTests.m; sourceTree = "<group>"; };
 		0A91CA241AAF349000D7B54D /* SKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKCell.h; path = ../SKCell.h; sourceTree = "<group>"; };
 		0A91CA251AAF349000D7B54D /* SKCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKCell.m; path = ../SKCell.m; sourceTree = "<group>"; };
+		0AE093C51AB12FEE003EBEA2 /* SKPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPiece.h; sourceTree = "<group>"; };
+		0AE093C61AB12FEE003EBEA2 /* SKPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPiece.m; sourceTree = "<group>"; };
+		0AE093CB1AB1310B003EBEA2 /* Queen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Queen.png; sourceTree = "<group>"; };
+		0AE093CD1AB13111003EBEA2 /* King.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = King.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +96,7 @@
 		0A91C9F41AAF32F700D7B54D /* CyvasseDev */ = {
 			isa = PBXGroup;
 			children = (
+				0AE093CA1AB130FC003EBEA2 /* Pieces */,
 				0A91CA201AAF331C00D7B54D /* Classes */,
 				0A91C9F91AAF32F700D7B54D /* AppDelegate.h */,
 				0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */,
@@ -136,8 +144,19 @@
 			children = (
 				0A91CA241AAF349000D7B54D /* SKCell.h */,
 				0A91CA251AAF349000D7B54D /* SKCell.m */,
+				0AE093C51AB12FEE003EBEA2 /* SKPiece.h */,
+				0AE093C61AB12FEE003EBEA2 /* SKPiece.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0AE093CA1AB130FC003EBEA2 /* Pieces */ = {
+			isa = PBXGroup;
+			children = (
+				0AE093CD1AB13111003EBEA2 /* King.png */,
+				0AE093CB1AB1310B003EBEA2 /* Queen.png */,
+			);
+			name = Pieces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +239,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE093CE1AB13111003EBEA2 /* King.png in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
 				0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */,
+				0AE093CC1AB1310B003EBEA2 /* Queen.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);
@@ -241,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE093C71AB12FEE003EBEA2 /* SKPiece.m in Sources */,
 				0A91CA031AAF32F700D7B54D /* GameViewController.m in Sources */,
 				0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */,
 				0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */,
@@ -438,6 +460,7 @@
 				0A91CA1C1AAF32F800D7B54D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A91CA1D1AAF32F800D7B54D /* Build configuration list for PBXNativeTarget "CyvasseDevTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +469,7 @@
 				0A91CA1F1AAF32F800D7B54D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
