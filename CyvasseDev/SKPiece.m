@@ -21,6 +21,8 @@
         newPiece.pieceType = type;
         newPiece.moveSpeed = 3;
         newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 10;
+        newPiece.attackDamage = 5;
         
     }
     
@@ -32,6 +34,8 @@
         newPiece.pieceType = type;
         newPiece.moveSpeed = 3;
         newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 15;
+        newPiece.attackDamage = 3;
         
        
     }

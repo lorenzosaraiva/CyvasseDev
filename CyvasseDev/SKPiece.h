@@ -21,6 +21,8 @@ typedef enum SKPieceType {
 @property PieceType pieceType;
 @property int player;
 @property int moveSpeed;
+@property int hitPoints;
+@property int attackDamage;
 
 
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;

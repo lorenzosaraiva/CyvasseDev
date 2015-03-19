@@ -15,7 +15,7 @@
 {
     
     SKCell * cell;
-    cell = [SKCell spriteNodeWithColor:color size:CGSizeMake(50, 50)];
+    cell = [SKCell spriteNodeWithColor:color size:CGSizeMake(40, 40)];
     cell.cellColor = color;
     cell.currentPiece = nil;
     return cell;
