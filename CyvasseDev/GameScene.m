@@ -103,7 +103,7 @@
     isSelected = true;
     if (cell.currentPiece != nil){
         if (!isAttacking)
-            [self highlightOptionsOfCellAtIndex:cell.index];
+            [self highlightOptionsOfCell:cell];
         else
             [self highlightAttackOptionsOfCellAtIndex:cell.index];
     }
@@ -122,7 +122,6 @@
         destinyCell = [cellArray objectAtIndex:i];
         if ([destinyCell containsPoint:positionInScene] ){
             if (currentCell.currentPiece != nil && [possibleCellsArray containsObject:destinyCell] && destinyCell.currentPiece == nil){
-                NSLog(@"THE BUG");
                 destinyCell.currentPiece = currentCell.currentPiece;
                 currentCell.currentPiece = nil;
                 [currentCell removeAllChildren];
@@ -131,7 +130,6 @@
                 isWalking = true;
                 [self unHighlightCells];
                 [self selectCell:destinyCell];
-                NSLog(@"M888888 MLG");
                 moveCounter++;
                 if (moveCounter == piece.moveSpeed){
                     moveCounter = 0;
@@ -171,7 +169,7 @@
             [cellArray addObject:cell];
             cell.index = cells;
             cell.line = g;
-            cell.column = h + 1;
+            cell.column = h + 5;
             cells++;
             int a = CGRectGetMidX(self.frame) - 120;
             int b = CGRectGetMidY(self.frame) + 360;
@@ -187,7 +185,7 @@
             UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
             SKCell *cell = [SKCell initWithColor:color];
             cell.line = i + 4;
-            cell.column = j;
+            cell.column = j + 4;
             [self addChild:cell];
             [cellArray addObject:cell];
             int a = CGRectGetMidX(self.frame) - 160;
@@ -216,7 +214,7 @@
             [cellArray addObject:cell];
             cell.index = cells;
             cell.line = g + 12;
-            cell.column = h + 1;
+            cell.column = h + 5;
             cells++;
             int a = CGRectGetMidX(self.frame) - 120;
             int b = CGRectGetMidY(self.frame) - 120;
@@ -235,9 +233,28 @@
             [cellArray addObject:cell];
             cell.index = cells;
             cell.line = g + 5;
-            cell.column = h + 8;
+            cell.column = h + 12;
             cells++;
             int a = CGRectGetMidX(self.frame) + 160;
+            int b = CGRectGetMidY(self.frame) + 160;
+            cell.position = CGPointMake(a + h * 40, b - g * 40);
+            blackOrWhite = !blackOrWhite;
+        }
+        blackOrWhite = !blackOrWhite;
+    }
+    
+    for (int g = 0; g < 6; g++){
+        for (int h = 0; h < 4; h++){
+            NSLog(@"a");
+            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            SKCell *cell = [SKCell initWithColor:color];
+            [self addChild:cell];
+            [cellArray addObject:cell];
+            cell.index = cells;
+            cell.line = g + 5;
+            cell.column = h;
+            cells++;
+            int a = CGRectGetMidX(self.frame) - 320;
             int b = CGRectGetMidY(self.frame) + 160;
             cell.position = CGPointMake(a + h * 40, b - g * 40);
             blackOrWhite = !blackOrWhite;
@@ -248,12 +265,12 @@
 
 }
 
--(void)highlightOptionsOfCellAtIndex:(int)cellIndex{
+-(void)highlightOptionsOfCell:(SKCell*)cell{
     
     SKCell *tempCell;
     NSLog(@"Chegou AQUI");
     NSLog(@"Index da celula principal : %d", currentCell.index);
-    if (cellIndex != 0){
+    if (cell.column != 0){
         tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column - 1];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (tempCell.line == currentCell.line)){
@@ -265,7 +282,7 @@
     
     
     
-    if (cellIndex + 1 < cellArray.count){
+    if (cell.column < 16){
         tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column + 1];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (tempCell.line == currentCell.line)){
@@ -275,7 +292,7 @@
         }
     }
     
-    if (cellIndex + 8 < cellArray.count ){
+    if (cell.line != 15 ){
         tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil){
@@ -285,7 +302,7 @@
         }
     }
     
-    if (cellIndex + 9 < cellArray.count ){
+    if (cell.column != 16 && cell.line != 15 ){
         tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column + 1];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
@@ -295,7 +312,7 @@
         }
     }
     
-    if (cellIndex + 7 < cellArray.count ){
+    if (cell.column > 0 && cell.line != 15 ){
         tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column - 1];
          if (tempCell != nil)
         if (tempCell.currentPiece == nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
@@ -305,7 +322,7 @@
         }
     }
     
-    if (cellIndex - 7 >= 0 ){
+    if (cell.line > 0 && cell.column != 15 ){
         tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column + 1];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
@@ -316,7 +333,7 @@
         }
     }
     
-    if (cellIndex - 8 >= 0 ){
+    if (cell.line > 0 ){
         tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil){
@@ -326,7 +343,7 @@
         }
     }
     
-    if (cellIndex - 9 >= 0 ){
+    if (cell.line > 0 && cell.column > 0 ){
         tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column - 1];
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
