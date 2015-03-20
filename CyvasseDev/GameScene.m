@@ -83,7 +83,7 @@
     if (!isWalking){
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
-        if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece != nil){
+        if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece != nil && tempCell.currentPiece.pieceType != Tower){
             SKPiece *tempPiece = tempCell.currentPiece;
             if (tempPiece.player == player){
                 [self selectCell:tempCell];
@@ -163,7 +163,7 @@
     cellArray = [[NSMutableArray alloc]init];
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
-            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             [self addChild:cell];
             [cellArray addObject:cell];
@@ -174,6 +174,7 @@
             int a = CGRectGetMidX(self.frame) - 120;
             int b = CGRectGetMidY(self.frame) + 360;
             cell.position = CGPointMake(a + h * 40, b - g * 40);
+            [self pieceForCell:cell];
             blackOrWhite = !blackOrWhite;
         }
         blackOrWhite = !blackOrWhite;
@@ -182,7 +183,7 @@
     for (int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
             
-            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             cell.line = i + 4;
             cell.column = j + 4;
@@ -193,13 +194,7 @@
             cell.position = CGPointMake(a + j * 40, b - i * 40);
             cell.index = cells;
             cells++;
-            if (i < 2 || i > 5){
-                Player player = i < 3? Black:White;
-                SKPiece *newPiece = [SKPiece initPieceOfType:i < 3? King:Queen ofPlayer:player];
-                cell.currentPiece = newPiece;
-                [cell addChild:newPiece];
-            }
-            
+            [self pieceForCell:cell];
             blackOrWhite = !blackOrWhite;
         }
         blackOrWhite = !blackOrWhite;
@@ -208,7 +203,7 @@
     blackOrWhite = !blackOrWhite;
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
-            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             [self addChild:cell];
             [cellArray addObject:cell];
@@ -219,6 +214,7 @@
             int a = CGRectGetMidX(self.frame) - 120;
             int b = CGRectGetMidY(self.frame) - 120;
             cell.position = CGPointMake(a + h * 40, b - g * 40);
+            [self pieceForCell:cell];
             blackOrWhite = !blackOrWhite;
         }
         blackOrWhite = !blackOrWhite;
@@ -227,7 +223,7 @@
     for (int g = 0; g < 6; g++){
         for (int h = 0; h < 4; h++){
             NSLog(@"a");
-            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             [self addChild:cell];
             [cellArray addObject:cell];
@@ -246,7 +242,7 @@
     for (int g = 0; g < 6; g++){
         for (int h = 0; h < 4; h++){
             NSLog(@"a");
-            UIColor * color = blackOrWhite? [UIColor blackColor]:[UIColor whiteColor];
+            UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             [self addChild:cell];
             [cellArray addObject:cell];
@@ -264,11 +260,70 @@
     
 
 }
+-(void)pieceForCell:(SKCell*)cell{
+    SKPiece *newPiece;
+    Player player =  cell.line < 10? Black:White;
+    
+    if (cell.line == 0 || cell.line == 15){
+        switch (cell.column) {
+            case 5:
+                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                break;
+            case 6:
+                newPiece = [SKPiece initPieceOfType:LightMage ofPlayer:player];
+                break;
+            case 7:
+                newPiece = [SKPiece initPieceOfType:King ofPlayer:player];
+                break;
+            case 8:
+                newPiece = [SKPiece initPieceOfType:RoyalGuard ofPlayer:player];
+                break;
+            case 9:
+                newPiece = [SKPiece initPieceOfType:FireMage ofPlayer:player];
+                break;
+            case 10:
+                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                break;
+        }
+    }
+    
+    if (cell.line == 1 || cell.line == 14){
+        switch (cell.column) {
+            case 5:
+                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                break;
+            case 6:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 7:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 8:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 9:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 10:
+                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                break;
+        }
+    }
+
+    if (cell.line == 5 || cell.line == 10){
+        if (cell.column == 5|| cell.column == 10){
+            newPiece = [SKPiece initPieceOfType:Tower ofPlayer:player];
+        }
+    }
+    if (newPiece != nil){
+        cell.currentPiece = newPiece;
+        [cell addChild:newPiece];
+        }
+   }
 
 -(void)highlightOptionsOfCell:(SKCell*)cell{
     
     SKCell *tempCell;
-    NSLog(@"Chegou AQUI");
     NSLog(@"Index da celula principal : %d", currentCell.index);
     if (cell.column != 0){
         tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column - 1];
@@ -353,6 +408,12 @@
         }
     }
     
+    if (possibleCellsArray.count == 0){
+        isSelected = false;
+        SKAction * unSelect = [SKAction colorizeWithColor:currentCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+        [currentCell runAction:unSelect];
+        
+    }
 }
 
 

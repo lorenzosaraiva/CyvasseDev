@@ -17,9 +17,18 @@
 		0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A91CA091AAF32F700D7B54D /* LaunchScreen.xib */; };
 		0A91CA171AAF32F800D7B54D /* CyvasseDevTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */; };
 		0A91CA261AAF349000D7B54D /* SKCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA251AAF349000D7B54D /* SKCell.m */; };
+		0ADE5EC61ABCA4B5003A7F21 /* pawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EC51ABCA4B5003A7F21 /* pawn.png */; };
+		0ADE5ECA1ABCA720003A7F21 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EC91ABCA720003A7F21 /* horse.png */; };
+		0ADE5ED01ABCA8C0003A7F21 /* lightmage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */; };
+		0ADE5ED21ABCAA3E003A7F21 /* dragon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */; };
+		0ADE5ED41ABCAB5A003A7F21 /* dragonslayer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */; };
+		0ADE5EDA1ABCB4B0003A7F21 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED91ABCB4B0003A7F21 /* firemage.png */; };
+		0ADE5EDC1ABCB50E003A7F21 /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDB1ABCB50E003A7F21 /* archer.png */; };
+		0ADE5EDE1ABCB5F9003A7F21 /* royalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */; };
+		0ADE5EE01ABCB81D003A7F21 /* tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDF1ABCB81D003A7F21 /* tower.png */; };
 		0AE093C71AB12FEE003EBEA2 /* SKPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093C61AB12FEE003EBEA2 /* SKPiece.m */; };
-		0AE093CC1AB1310B003EBEA2 /* Queen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CB1AB1310B003EBEA2 /* Queen.png */; };
-		0AE093CE1AB13111003EBEA2 /* King.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CD1AB13111003EBEA2 /* King.png */; };
+		0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CB1AB1310B003EBEA2 /* queen.png */; };
+		0AE093CE1AB13111003EBEA2 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CD1AB13111003EBEA2 /* king.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +60,19 @@
 		0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyvasseDevTests.m; sourceTree = "<group>"; };
 		0A91CA241AAF349000D7B54D /* SKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKCell.h; path = ../SKCell.h; sourceTree = "<group>"; };
 		0A91CA251AAF349000D7B54D /* SKCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKCell.m; path = ../SKCell.m; sourceTree = "<group>"; };
+		0ADE5EC51ABCA4B5003A7F21 /* pawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pawn.png; sourceTree = "<group>"; };
+		0ADE5EC91ABCA720003A7F21 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lightmage.gif; sourceTree = "<group>"; };
+		0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dragon.jpg; sourceTree = "<group>"; };
+		0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dragonslayer.jpg; sourceTree = "<group>"; };
+		0ADE5ED91ABCB4B0003A7F21 /* firemage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firemage.png; sourceTree = "<group>"; };
+		0ADE5EDB1ABCB50E003A7F21 /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
+		0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = royalguard.png; sourceTree = "<group>"; };
+		0ADE5EDF1ABCB81D003A7F21 /* tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower.png; sourceTree = "<group>"; };
 		0AE093C51AB12FEE003EBEA2 /* SKPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPiece.h; sourceTree = "<group>"; };
 		0AE093C61AB12FEE003EBEA2 /* SKPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPiece.m; sourceTree = "<group>"; };
-		0AE093CB1AB1310B003EBEA2 /* Queen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Queen.png; sourceTree = "<group>"; };
-		0AE093CD1AB13111003EBEA2 /* King.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = King.png; sourceTree = "<group>"; };
+		0AE093CB1AB1310B003EBEA2 /* queen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = queen.png; sourceTree = "<group>"; };
+		0AE093CD1AB13111003EBEA2 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +171,17 @@
 		0AE093CA1AB130FC003EBEA2 /* Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				0AE093CD1AB13111003EBEA2 /* King.png */,
-				0AE093CB1AB1310B003EBEA2 /* Queen.png */,
+				0AE093CD1AB13111003EBEA2 /* king.png */,
+				0AE093CB1AB1310B003EBEA2 /* queen.png */,
+				0ADE5EC51ABCA4B5003A7F21 /* pawn.png */,
+				0ADE5EC91ABCA720003A7F21 /* horse.png */,
+				0ADE5EDB1ABCB50E003A7F21 /* archer.png */,
+				0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */,
+				0ADE5ED91ABCB4B0003A7F21 /* firemage.png */,
+				0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */,
+				0ADE5EDF1ABCB81D003A7F21 /* tower.png */,
+				0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */,
+				0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */,
 			);
 			name = Pieces;
 			sourceTree = "<group>";
@@ -239,11 +266,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AE093CE1AB13111003EBEA2 /* King.png in Resources */,
+				0ADE5ED01ABCA8C0003A7F21 /* lightmage.gif in Resources */,
+				0AE093CE1AB13111003EBEA2 /* king.png in Resources */,
+				0ADE5ECA1ABCA720003A7F21 /* horse.png in Resources */,
+				0ADE5EDA1ABCB4B0003A7F21 /* firemage.png in Resources */,
+				0ADE5ED21ABCAA3E003A7F21 /* dragon.jpg in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
+				0ADE5EDE1ABCB5F9003A7F21 /* royalguard.png in Resources */,
+				0ADE5EDC1ABCB50E003A7F21 /* archer.png in Resources */,
+				0ADE5EE01ABCB81D003A7F21 /* tower.png in Resources */,
 				0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */,
-				0AE093CC1AB1310B003EBEA2 /* Queen.png in Resources */,
+				0ADE5EC61ABCA4B5003A7F21 /* pawn.png in Resources */,
+				0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
+				0ADE5ED41ABCAB5A003A7F21 /* dragonslayer.jpg in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CyvasseDev/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -402,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CyvasseDev/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

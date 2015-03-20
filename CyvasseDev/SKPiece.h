@@ -13,7 +13,16 @@
 typedef enum SKPieceType {
     
     King = 0,
-    Queen = 1
+    Infantry = 1,
+    Archer = 2,
+    Chivalry = 3,
+    FireMage = 4,
+    LightMage = 5,
+    RoyalGuard = 6,
+    Dragon = 7,
+    DragonSlayer = 8,
+    Tower = 9
+    
     
 } PieceType;
 
@@ -23,8 +32,9 @@ typedef enum SKPieceType {
 @property int moveSpeed;
 @property int hitPoints;
 @property int attackDamage;
-
-
+@property int range;
+@property BOOL canAttack;
+@property BOOL fireProof;
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;
 
 @end
