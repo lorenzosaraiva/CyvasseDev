@@ -138,6 +138,18 @@
         
     }
     
+    if (type == 10){
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"catapult.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 3;
+        newPiece.attackDamage = 10;
+        newPiece.range = 2;
+        newPiece.fireProof = NO;
+        
+    }
     return newPiece;
 
 }

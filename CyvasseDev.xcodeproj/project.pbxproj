@@ -29,6 +29,7 @@
 		0AE093C71AB12FEE003EBEA2 /* SKPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093C61AB12FEE003EBEA2 /* SKPiece.m */; };
 		0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CB1AB1310B003EBEA2 /* queen.png */; };
 		0AE093CE1AB13111003EBEA2 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CD1AB13111003EBEA2 /* king.png */; };
+		0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093D41AC0D2CA003EBEA2 /* catapult.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		0AE093C61AB12FEE003EBEA2 /* SKPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPiece.m; sourceTree = "<group>"; };
 		0AE093CB1AB1310B003EBEA2 /* queen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = queen.png; sourceTree = "<group>"; };
 		0AE093CD1AB13111003EBEA2 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
+		0AE093D41AC0D2CA003EBEA2 /* catapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catapult.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */,
 				0ADE5ED91ABCB4B0003A7F21 /* firemage.png */,
 				0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */,
+				0AE093D41AC0D2CA003EBEA2 /* catapult.png */,
 				0ADE5EDF1ABCB81D003A7F21 /* tower.png */,
 				0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */,
 				0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */,
@@ -279,6 +282,7 @@
 				0ADE5EC61ABCA4B5003A7F21 /* pawn.png in Resources */,
 				0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
+				0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */,
 				0ADE5ED41ABCAB5A003A7F21 /* dragonslayer.jpg in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);

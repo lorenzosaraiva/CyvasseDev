@@ -15,6 +15,7 @@
     
     NSMutableArray *cellArray;
     NSMutableArray *possibleCellsArray;
+    NSMutableArray *possibleAttackers;
     SKCell *lastCell;
     SKCell *currentCell;
     BOOL isSelected;
@@ -22,6 +23,8 @@
     BOOL blackPlays;
     BOOL isAttacking;
     BOOL selectAttacker;
+    BOOL hasTarget;
+    BOOL hasAttacker;
     int moveCounter;
     int cells;
 }
@@ -32,6 +35,8 @@
     isWalking = false;
     isAttacking = false;
     selectAttacker = false;
+    hasTarget = false;
+    hasAttacker = false;
     cells = 0;
     moveCounter = 0;
     possibleCellsArray = [[NSMutableArray alloc]init];
@@ -57,8 +62,26 @@
     /* Called before each frame is rendered */
 }
 
+-(BOOL)checkPossibleAttacks{
+    SKCell *tempCell;
+    hasAttacker = false;
+    [possibleCellsArray removeAllObjects];
+    for (int i = 0; i < cellArray.count; i++){
+        tempCell = [cellArray objectAtIndex:i];
+        [self highlightAttackOptionsOfCell:tempCell];
+        if ( hasTarget == true ){
+            [possibleAttackers addObject:tempCell];
+            hasAttacker = true;
+        }
+        [self unHighlightCells];
+    }
+    NSLog(@"Resultado : %d",hasAttacker);
+    return hasAttacker;
+}
+
 -(void)attackCell:(CGPoint)positionInScene{
     SKCell *tempCell;
+    NSLog(@"Attack Cell");
     for (int i = 0; i < possibleCellsArray.count; i++){
         tempCell = [possibleCellsArray objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene]){
@@ -81,11 +104,14 @@
 -(void)checkSelectedCell:(CGPoint)positionInScene ofPlayer:(Player)player{
     SKCell *tempCell;
     if (!isWalking){
+        NSLog(@"Check Selected Cell");
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece != nil && tempCell.currentPiece.pieceType != Tower){
+            NSLog(@"Check Selected Cell 2");
             SKPiece *tempPiece = tempCell.currentPiece;
             if (tempPiece.player == player){
+                NSLog(@"Check Selected Cell 3");
                 [self selectCell:tempCell];
             }
         }
@@ -104,8 +130,10 @@
     if (cell.currentPiece != nil){
         if (!isAttacking)
             [self highlightOptionsOfCell:cell];
-        else
-            [self highlightAttackOptionsOfCellAtIndex:cell.index];
+        else{
+            [self highlightAttackOptionsOfCell:cell];
+            selectAttacker = !selectAttacker;
+        }
     }
 }
 
@@ -130,14 +158,22 @@
                 isWalking = true;
                 [self unHighlightCells];
                 [self selectCell:destinyCell];
+                
                 moveCounter++;
                 if (moveCounter == piece.moveSpeed){
                     moveCounter = 0;
                     isWalking = false;
                     isSelected = false;
-                    isAttacking = true;
                     [self unHighlightCells];
+                    if ([self checkPossibleAttacks]){
+                        isAttacking = true;
                     }
+                    else{
+                        blackPlays = !blackPlays;
+                       
+                    }
+                    
+                }
             }
             SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
             [lastCell runAction:unSelect];
@@ -293,7 +329,30 @@
                 newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
                 break;
             case 6:
+                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                break;
+            case 7:
+                newPiece = [SKPiece initPieceOfType:Dragon ofPlayer:player];
+                break;
+            case 8:
+                newPiece = [SKPiece initPieceOfType:DragonSlayer ofPlayer:player];
+                break;
+            case 9:
+                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                break;
+            case 10:
+                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                break;
+        }
+    }
+    
+    if (cell.line == 2 || cell.line == 13){
+        switch (cell.column) {
+            case 5:
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 6:
+                newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
                 break;
             case 7:
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
@@ -302,10 +361,33 @@
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
                 break;
             case 9:
-                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
                 break;
             case 10:
-                newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+        }
+    }
+    
+    if (cell.line == 3 || cell.line == 12){
+        switch (cell.column) {
+            case 5:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 6:
+                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                break;
+            case 7:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 8:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                break;
+            case 9:
+                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                break;
+            case 10:
+                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
                 break;
         }
     }
@@ -382,7 +464,7 @@
         if (tempCell != nil)
         if (tempCell.currentPiece == nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
-            NSLog(@"the LAST");
+
             [possibleCellsArray addObject:tempCell];
             NSLog(@"6 - Index da celula : %d", tempCell.index);
         }
@@ -417,13 +499,13 @@
 }
 
 
--(void)highlightAttackOptionsOfCellAtIndex:(int)cellIndex{
+-(void)highlightAttackOptionsOfCell:(SKCell*)cell{
     
     SKCell *tempCell;
     
-    if (cellIndex != 0){
-        tempCell = [cellArray objectAtIndex:cellIndex - 1];
-        
+    if (cell.column != 0){
+        tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column - 1];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil && (tempCell.line == currentCell.line)){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
@@ -434,8 +516,10 @@
     
     
     
-    if (cellIndex + 1 < cellArray.count){
-        tempCell = [cellArray objectAtIndex:cellIndex + 1];
+    
+    if (cell.column < 16){
+        tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column + 1];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil && (tempCell.line == currentCell.line)){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -444,9 +528,9 @@
             }
         }
     }
-    
-    if (cellIndex + 8 < cellArray.count ){
-        tempCell = [cellArray objectAtIndex:cellIndex + 8];
+    if (cell.line != 15 ){
+        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -456,8 +540,9 @@
         }
     }
     
-    if (cellIndex + 9 < cellArray.count ){
-        tempCell = [cellArray objectAtIndex:cellIndex + 9];
+    if (cell.column != 16 && cell.line != 15 ){
+        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column + 1];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -467,8 +552,9 @@
         }
     }
     
-    if (cellIndex + 7 < cellArray.count ){
-        tempCell = [cellArray objectAtIndex:cellIndex + 7];
+    if (cell.column > 0 && cell.line != 15 ){
+        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column - 1];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -478,9 +564,10 @@
         }
     }
     
-    if (cellIndex - 7 >= 0 ){
-        tempCell = [cellArray objectAtIndex:cellIndex - 7];
-        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
+    
+    if (cell.line > 0 && cell.column != 15 ){
+        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column + 1];
+        if (tempCell != nil)        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
@@ -489,8 +576,9 @@
         }
     }
     
-    if (cellIndex - 8 >= 0 ){
-        tempCell = [cellArray objectAtIndex:cellIndex - 8];
+    if (cell.line > 0 ){
+        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -499,9 +587,9 @@
             }
         }
     }
-    
-    if (cellIndex - 9 >= 0 ){
-        tempCell = [cellArray objectAtIndex:cellIndex - 9];
+    if (cell.line > 0 && cell.column > 0 ){
+        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column - 1];
+        if (tempCell != nil)
         if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
             if (tempCell.currentPiece.player != currentCell.currentPiece.player){
 
@@ -510,8 +598,13 @@
             }
         }
     }
+    NSLog(@"Attackers : %d",possibleCellsArray.count);
+    if (possibleCellsArray.count == 0){
+        hasTarget = false;
+    }else{
+        hasTarget = true;
+    }
     
-    selectAttacker = !selectAttacker;
     
 }
 
