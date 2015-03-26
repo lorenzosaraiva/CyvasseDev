@@ -22,7 +22,8 @@ typedef enum SKPieceType {
     Dragon = 7,
     DragonSlayer = 8,
     Tower = 9,
-    Catapult = 10
+    Catapult = 10,
+    ArcherSniper = 11
     
     
 } PieceType;
@@ -33,7 +34,8 @@ typedef enum SKPieceType {
 @property int moveSpeed;
 @property int hitPoints;
 @property int attackDamage;
-@property int range;
+@property int rangeMax;
+@property int rangeMin;
 @property BOOL canAttack;
 @property BOOL fireProof;
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;

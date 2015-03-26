@@ -18,6 +18,7 @@
     NSMutableArray *possibleAttackers;
     SKCell *lastCell;
     SKCell *currentCell;
+    UILabel *mainLabel;
     BOOL isSelected;
     BOOL isWalking;
     BOOL blackPlays;
@@ -40,6 +41,7 @@
     cells = 0;
     moveCounter = 0;
     possibleCellsArray = [[NSMutableArray alloc]init];
+    possibleAttackers = [[NSMutableArray alloc]init];
     [self createMap];
 }
 
@@ -52,10 +54,13 @@
         [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
     else if (!isAttacking)
         [self movePiece:(SKPiece*)currentCell.currentPiece ToCell:positionInScene];
-    else if (!selectAttacker)
+    else if (!selectAttacker){
+        NSLog(@"Possible Attackers : %d", possibleAttackers.count);
         [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
+    }
     else
         [self attackCell:positionInScene];
+
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -68,7 +73,7 @@
     [possibleCellsArray removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
-        [self highlightAttackOptionsOfCell:tempCell];
+        [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
         if ( hasTarget == true ){
             [possibleAttackers addObject:tempCell];
             hasAttacker = true;
@@ -98,26 +103,25 @@
     blackPlays = !blackPlays;
     selectAttacker = !selectAttacker;
     isSelected = !isSelected;
+    [possibleAttackers removeAllObjects];
     [self unHighlightCells];
 }
 
 -(void)checkSelectedCell:(CGPoint)positionInScene ofPlayer:(Player)player{
     SKCell *tempCell;
     if (!isWalking){
-        NSLog(@"Check Selected Cell");
-    for (int i = 0; i < cellArray.count; i++){
-        tempCell = [cellArray objectAtIndex:i];
+        for (int i = 0; !isAttacking? i < cellArray.count : i < possibleAttackers.count; i++){
+            tempCell = !isAttacking ? [cellArray objectAtIndex:i] : [possibleAttackers objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece != nil && tempCell.currentPiece.pieceType != Tower){
-            NSLog(@"Check Selected Cell 2");
             SKPiece *tempPiece = tempCell.currentPiece;
             if (tempPiece.player == player){
-                NSLog(@"Check Selected Cell 3");
                 [self selectCell:tempCell];
             }
         }
     }
 }
 }
+
 
 -(void)selectCell:(SKCell*)cell{
     lastCell = currentCell;
@@ -131,7 +135,7 @@
         if (!isAttacking)
             [self highlightOptionsOfCell:cell];
         else{
-            [self highlightAttackOptionsOfCell:cell];
+            [self highlightAttackOptionsOfCell:cell withRangeMin:cell.currentPiece.rangeMin andMax:cell.currentPiece.rangeMax];
             selectAttacker = !selectAttacker;
         }
     }
@@ -167,10 +171,12 @@
                     [self unHighlightCells];
                     if ([self checkPossibleAttacks]){
                         isAttacking = true;
+                        NSLog(@"Possible Attackers : %d", possibleAttackers.count);
                     }
                     else{
                         blackPlays = !blackPlays;
-                       
+                        NSLog(@"Possible Attackers : %d", possibleAttackers.count);
+
                     }
                     
                 }
@@ -196,6 +202,10 @@
 -(void)createMap{
 
     BOOL blackOrWhite = false;
+    
+    mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - 300, 0,300, 100)];
+    mainLabel.backgroundColor = [UIColor redColor];
+    [self.view addSubview:mainLabel];
     cellArray = [[NSMutableArray alloc]init];
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
@@ -277,7 +287,6 @@
     
     for (int g = 0; g < 6; g++){
         for (int h = 0; h < 4; h++){
-            NSLog(@"a");
             UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
             SKCell *cell = [SKCell initWithColor:color];
             [self addChild:cell];
@@ -499,15 +508,16 @@
 }
 
 
--(void)highlightAttackOptionsOfCell:(SKCell*)cell{
+-(void)highlightAttackOptionsOfCell:(SKCell*)cell withRangeMin:(int)minRange andMax:(int)maxRange{
     
+    [possibleCellsArray removeAllObjects];
     SKCell *tempCell;
-    
+    if (cell.currentPiece.rangeMin <= 1 && cell.currentPiece.rangeMax >=1){
     if (cell.column != 0){
-        tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column - 1];
+        tempCell = [self cellForLine:cell.line andColumn:cell.column - 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (tempCell.line == currentCell.line)){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        if (tempCell.currentPiece != nil && (tempCell.line == cell.line)){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
@@ -518,93 +528,153 @@
     
     
     if (cell.column < 16){
-        tempCell = [self cellForLine:currentCell.line andColumn:currentCell.column + 1];
+        tempCell = [self cellForLine:cell.line andColumn:cell.column + 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (tempCell.line == currentCell.line)){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        if (tempCell.currentPiece != nil && (tempCell.line == cell.line)){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
+        tempCell = nil;
     if (cell.line != 15 ){
-        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column];
+        tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column];
         if (tempCell != nil)
         if (tempCell.currentPiece != nil){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
-    
+    tempCell = nil;
     if (cell.column != 16 && cell.line != 15 ){
-        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column + 1];
+        tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column + 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - cell.column) == 1) ){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
-    
+    tempCell = nil;
     if (cell.column > 0 && cell.line != 15 ){
-        tempCell = [self cellForLine:currentCell.line + 1 andColumn:currentCell.column - 1];
+        tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column - 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - cell.column) == 1) ){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
-    
+    tempCell = nil;
     
     if (cell.line > 0 && cell.column != 15 ){
-        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column + 1];
-        if (tempCell != nil)        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column + 1];
+        if (tempCell != nil)        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - cell.column) == 1) ){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
-    
+    tempCell = nil;
     if (cell.line > 0 ){
-        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column];
+        tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column];
         if (tempCell != nil)
         if (tempCell.currentPiece != nil){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
+        tempCell = nil;
     if (cell.line > 0 && cell.column > 0 ){
-        tempCell = [self cellForLine:currentCell.line - 1 andColumn:currentCell.column - 1];
+        tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column - 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - currentCell.column) == 1) ){
-            if (tempCell.currentPiece.player != currentCell.currentPiece.player){
+        if (tempCell.currentPiece != nil && (fabsf(tempCell.column - cell.column) == 1) ){
+            if (tempCell.currentPiece.player != cell.currentPiece.player){
 
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
             }
         }
     }
-    NSLog(@"Attackers : %d",possibleCellsArray.count);
+        tempCell = nil;
+    }
+    
+    /*aqui*/
+    
+    if (cell.currentPiece.rangeMin <= 2 && cell.currentPiece.rangeMax >=2){
+        
+        NSLog(@"entrou");
+        for (int i = -2; i < 3; i ++){
+                tempCell = [self cellForLine:cell.line + 2 andColumn:cell.column + i];
+                if (tempCell != nil)
+                    if (tempCell.currentPiece != nil ){
+                        if (tempCell.currentPiece.player != cell.currentPiece.player){
+                            [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
+                            [possibleCellsArray addObject:tempCell];
+                        }
+                    }
+                tempCell = nil;
+        }
+        
+        for (int i = -2; i < 3; i ++){
+            tempCell = [self cellForLine:cell.line - 2 andColumn:cell.column + i];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil ){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -1; i < 2; i ++){
+            tempCell = [self cellForLine:cell.line +i andColumn:cell.column + 2];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -1; i < 2; i ++){
+            tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column - 2];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+    }
+
+    
+    NSLog(@"Possible Targets : %d",possibleCellsArray.count);
     if (possibleCellsArray.count == 0){
         hasTarget = false;
     }else{
         hasTarget = true;
     }
-    
     
 }
 

@@ -22,7 +22,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 8;
         newPiece.attackDamage = 3;
-        newPiece.range = 1;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
     }
     
@@ -34,7 +35,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 5;
         newPiece.attackDamage = 5;
-        newPiece.range = 1;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
     }
     
@@ -46,7 +48,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 5;
-        newPiece.range = 2;
+        newPiece.rangeMin = 2;
+        newPiece.rangeMax = 3;
         newPiece.fireProof = NO;
     
     }
@@ -59,7 +62,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 10;
         newPiece.attackDamage = 5;
-        newPiece.range = 1;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
     }
     
@@ -71,7 +75,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 5;
-        newPiece.range = 1;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = YES;
     }
     
@@ -83,7 +88,9 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 10;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
+        newPiece.fireProof = YES;
         
     }
     
@@ -95,7 +102,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 20;
         newPiece.attackDamage = 7;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         
     }
     
@@ -107,7 +115,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 30;
         newPiece.attackDamage = 10;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;;
         newPiece.fireProof = YES;
         
     }
@@ -120,7 +129,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 15;
         newPiece.attackDamage = 5;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = YES;
         
     }
@@ -133,7 +143,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 30;
         newPiece.attackDamage = 5;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
         
     }
@@ -146,7 +157,21 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 10;
-        newPiece.range = 2;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
+        newPiece.fireProof = NO;
+        
+    }
+    if (type == 11){
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 3;
+        newPiece.attackDamage = 7;
+        newPiece.rangeMin = 3;
+        newPiece.rangeMax = 4;
         newPiece.fireProof = NO;
         
     }
