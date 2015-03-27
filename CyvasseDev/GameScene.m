@@ -98,13 +98,7 @@
     for (int i = 0; i < possibleCellsArray.count; i++){
         tempCell = [possibleCellsArray objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene]){
-            int temp = tempCell.currentPiece.hitPoints;
-            tempCell.currentPiece.hitPoints -= currentCell.currentPiece.attackDamage;
-            NSLog(@"Piece one attacks piece two with %d damage. Piece two hp goes from %d -> %d", currentCell.currentPiece.attackDamage, temp, tempCell.currentPiece.hitPoints);
-            if (tempCell.currentPiece.hitPoints <= 0){
-                [tempCell removeAllChildren];
-                tempCell.currentPiece = nil;
-            }
+            [self checkAttackersOnCell:tempCell];
         }
     }
     isAttacking = !isAttacking;
@@ -122,13 +116,21 @@
     SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
     [lastCell runAction:unSelect];
     [possibleCellsArray removeAllObjects];
-    for (int i = 0; i < cellArray.count; i++){
-        tempCell = [cellArray objectAtIndex:i];
+    for (int i = 0; i < possibleAttackers.count; i++){
+        tempCell = [possibleAttackers objectAtIndex:i];
         [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
         if ([possibleCellsArray containsObject:targetCell]){
-        
+            int temp = targetCell.currentPiece.hitPoints;
+            targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage;
+            NSLog(@"Piece one attacks piece two with %d damage. Piece two hp goes from %d -> %d", tempCell.currentPiece.attackDamage, temp, targetCell.currentPiece.hitPoints);
+            if (targetCell.currentPiece.hitPoints <= 0){
+                [targetCell removeAllChildren];
+                targetCell.currentPiece = nil;
+            }
         }
         }
+        [targetCell runAction:[SKAction colorizeWithColor:targetCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [self unHighlightAttackersCells];
         [self unHighlightCells];
     }
 
@@ -222,6 +224,15 @@
         [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
     }
     [possibleCellsArray removeAllObjects];
+}
+
+-(void)unHighlightAttackersCells{
+    SKCell *tempCell;
+    for (int i = 0; i < possibleAttackers.count; i++){
+        tempCell = [possibleAttackers objectAtIndex:i];
+        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+    }
+    [possibleAttackers removeAllObjects];
 }
 
 
