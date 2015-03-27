@@ -175,6 +175,32 @@
         newPiece.fireProof = NO;
         
     }
+    if (type == 12){
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 3;
+        newPiece.attackDamage = 5;
+        newPiece.rangeMin = 2;
+        newPiece.rangeMax = 3;
+        newPiece.fireProof = NO;
+        
+    }
+    if (type == 13){
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 3;
+        newPiece.attackDamage = 7;
+        newPiece.rangeMin = 2;
+        newPiece.rangeMax = 2;
+        newPiece.fireProof = NO;
+        
+    }
     return newPiece;
 
 }

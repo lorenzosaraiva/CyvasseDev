@@ -23,7 +23,9 @@ typedef enum SKPieceType {
     DragonSlayer = 8,
     Tower = 9,
     Catapult = 10,
-    ArcherSniper = 11
+    ArcherSniper = 11,
+    ArcherIncendiary = 12,
+    ArcherCrossBow = 13
     
     
 } PieceType;

@@ -17,4 +17,14 @@ typedef enum currentPlayer {
     
 } Player;
 
+typedef enum TurnPhase {
+
+    ChoseMove = 0,
+    ChoseDirection = 1,
+    ChoseAttacker = 2,
+    ChoseAttackTarget = 3,
+    ChoseTowerTarget = 4
+
+} turnPhase;
+
 @end
