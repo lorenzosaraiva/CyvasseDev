@@ -67,15 +67,23 @@
     /* Called before each frame is rendered */
 }
 
--(BOOL)checkPossibleAttacks{
+
+/* Verifica se há ataques possíveis */
+
+-(BOOL)checkPossibleAttacksOfPlayer:(int)player{
     SKCell *tempCell;
+    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    [lastCell runAction:unSelect];
     hasAttacker = false;
     [possibleCellsArray removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
+        if (tempCell.currentPiece.player == player || tempCell.currentPiece.pieceType == Tower)
+            continue;
         [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
         if ( hasTarget == true ){
             [possibleAttackers addObject:tempCell];
+            [tempCell runAction:[SKAction colorizeWithColor:[UIColor purpleColor] colorBlendFactor:1.0f duration:0.0]];
             hasAttacker = true;
         }
         [self unHighlightCells];
@@ -103,9 +111,29 @@
     blackPlays = !blackPlays;
     selectAttacker = !selectAttacker;
     isSelected = !isSelected;
+    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    [lastCell runAction:unSelect];
     [possibleAttackers removeAllObjects];
     [self unHighlightCells];
 }
+
+-(void)checkAttackersOnCell:(SKCell*)targetCell{
+    SKCell *tempCell;
+    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    [lastCell runAction:unSelect];
+    [possibleCellsArray removeAllObjects];
+    for (int i = 0; i < cellArray.count; i++){
+        tempCell = [cellArray objectAtIndex:i];
+        [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
+        if ([possibleCellsArray containsObject:targetCell]){
+        
+        }
+        }
+        [self unHighlightCells];
+    }
+
+
+/* checa qual celula foi clicada */
 
 -(void)checkSelectedCell:(CGPoint)positionInScene ofPlayer:(Player)player{
     SKCell *tempCell;
@@ -169,7 +197,7 @@
                     isWalking = false;
                     isSelected = false;
                     [self unHighlightCells];
-                    if ([self checkPossibleAttacks]){
+                    if ([self checkPossibleAttacksOfPlayer:blackPlays]){
                         isAttacking = true;
                         NSLog(@"Possible Attackers : %d", possibleAttackers.count);
                     }
@@ -181,8 +209,6 @@
                     
                 }
             }
-            SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
-            [lastCell runAction:unSelect];
             
             
         }
@@ -516,7 +542,7 @@
     if (cell.column != 0){
         tempCell = [self cellForLine:cell.line andColumn:cell.column - 1];
         if (tempCell != nil)
-        if (tempCell.currentPiece != nil && (tempCell.line == cell.line)){
+        if (tempCell.currentPiece != nil){
             if (tempCell.currentPiece.player != cell.currentPiece.player){
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1.0f duration:0.0f]];
             [possibleCellsArray addObject:tempCell];
