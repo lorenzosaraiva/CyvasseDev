@@ -16,6 +16,7 @@
     NSMutableArray *cellArray;
     NSMutableArray *possibleCellsArray;
     NSMutableArray *possibleAttackers;
+    NSMutableArray *possibleTowerTargets;
     SKCell *lastCell;
     SKCell *currentCell;
     UILabel *mainLabel;
@@ -43,6 +44,8 @@
     moveCounter = 0;
     possibleCellsArray = [[NSMutableArray alloc]init];
     possibleAttackers = [[NSMutableArray alloc]init];
+    cellArray = [[NSMutableArray alloc]init];
+    possibleTowerTargets =[[NSMutableArray alloc]init];
     [self createMap];
 }
 
@@ -124,7 +127,7 @@
             [self checkAttackersOnCell:tempCell];
         }
     }
-    blackPlays = !blackPlays;
+    
     selectAttacker = !selectAttacker;
     towerAttack = !towerAttack;
     SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
@@ -135,17 +138,20 @@
     if ([self showTowerTargetsOfPlayer:blackPlays]){
         currentPhase = ChoseTowerTarget;
     }
-    else
+    else{
         currentPhase = ChoseMove;
+        blackPlays = !blackPlays;
+    }
 }
 
 -(void)attackCellWithTower:(CGPoint)positionInScene{
     SKCell *tempCell;
-    NSLog(@"Tower Attack Cell");
+   
     for (int i = 0; i < possibleCellsArray.count; i++){
         tempCell = [possibleCellsArray objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene]){
             tempCell.currentPiece.hitPoints -= 5;
+             NSLog(@"Tower Attack Cell with 5 damage, %d hp left", currentCell.currentPiece.hitPoints);
             if (tempCell.currentPiece.hitPoints <= 0){
                 [tempCell removeAllChildren];
                 tempCell.currentPiece = nil;
@@ -216,19 +222,23 @@
 
 -(BOOL)showTowerTargetsOfPlayer:(Player)player{
     SKCell * tempCell;
+    [possibleTowerTargets removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
-        if (tempCell.currentPiece.pieceType == Tower && tempCell.currentPiece.player == player){
+        if (tempCell.currentPiece.pieceType == Tower && tempCell.currentPiece.player != player){
+            NSLog(@"ENTROU NO LOOP");
             [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
+            NSLog(@"Possible cells eh %ld", possibleCellsArray.count);
+            [possibleTowerTargets addObjectsFromArray:possibleCellsArray];
         }
     }
-    for (int i = 0; i < possibleCellsArray.count; i++){
-        SKCell * targetCell = possibleCellsArray[i];
+    for (int i = 0; i < possibleTowerTargets.count; i++){
+        SKCell * targetCell = possibleTowerTargets[i];
         [targetCell runAction:[SKAction colorizeWithColor:[UIColor yellowColor] colorBlendFactor:1.0 duration:0.0f]];
     
     }
-    NSLog(@"Entrou, a count eh %ld", possibleCellsArray.count);
-    if (possibleCellsArray.count == 0){
+    NSLog(@"Entrou, a count eh %ld", possibleTowerTargets.count);
+    if (possibleTowerTargets.count == 0){
         return false;
     }
     return true;
@@ -289,8 +299,12 @@
                         NSLog(@"Possible Attackers : %lu", (unsigned long)possibleAttackers.count);
                     }
                     else{
-                        currentPhase = ChoseMove;
-                        blackPlays = !blackPlays;
+                        if ([self showTowerTargetsOfPlayer:blackPlays]){
+                            currentPhase = ChoseTowerTarget;
+                        }else{
+                            currentPhase = ChoseMove;
+                            blackPlays = !blackPlays;
+                        }
                         NSLog(@"Possible Attackers : %lu", (unsigned long)possibleAttackers.count);
 
                     }
@@ -329,7 +343,7 @@
     mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - 300, 0,300, 100)];
     mainLabel.backgroundColor = [UIColor redColor];
     [self.view addSubview:mainLabel];
-    cellArray = [[NSMutableArray alloc]init];
+    
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
             UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
