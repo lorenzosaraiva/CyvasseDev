@@ -226,9 +226,9 @@
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
         if (tempCell.currentPiece.pieceType == Tower && tempCell.currentPiece.player != player){
-            NSLog(@"ENTROU NO LOOP");
+
             [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
-            NSLog(@"Possible cells eh %ld", possibleCellsArray.count);
+            NSLog(@"Possible cells eh %ld", (unsigned long)possibleCellsArray.count);
             [possibleTowerTargets addObjectsFromArray:possibleCellsArray];
         }
     }
@@ -237,7 +237,7 @@
         [targetCell runAction:[SKAction colorizeWithColor:[UIColor yellowColor] colorBlendFactor:1.0 duration:0.0f]];
     
     }
-    NSLog(@"Entrou, a count eh %ld", possibleTowerTargets.count);
+    NSLog(@"Entrou, a count eh %ld",(unsigned long) possibleTowerTargets.count);
     if (possibleTowerTargets.count == 0){
         return false;
     }
@@ -271,7 +271,7 @@
         isWalking = false;
     }
     NSLog(@"looking FOR");
-    if (currentCell.currentPiece.pieceType == Chivalry){
+    if (currentCell.currentPiece.mainClass == Chivalry){
         if (currentCell.currentPiece.hitPoints <= 5 ){
             currentCell.currentPiece.moveSpeed = 1;
         }
@@ -474,7 +474,7 @@
                 newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
                 break;
             case 6:
-                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 7:
                 newPiece = [SKPiece initPieceOfType:Dragon ofPlayer:player];
@@ -483,7 +483,7 @@
                 newPiece = [SKPiece initPieceOfType:DragonSlayer ofPlayer:player];
                 break;
             case 9:
-                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 10:
                 newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
@@ -520,7 +520,7 @@
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
                 break;
             case 6:
-                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 7:
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
@@ -529,7 +529,7 @@
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
                 break;
             case 9:
-                newPiece = [SKPiece initPieceOfType:Chivalry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 10:
                 newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];

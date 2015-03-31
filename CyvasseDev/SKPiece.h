@@ -15,7 +15,7 @@ typedef enum SKPieceType {
     King = 0,
     Infantry = 1,
     Archer = 2,
-    Chivalry = 3,
+    ChivalryScout = 3,
     FireMage = 4,
     LightMage = 5,
     RoyalGuard = 6,
@@ -25,10 +25,21 @@ typedef enum SKPieceType {
     Catapult = 10,
     ArcherSniper = 11,
     ArcherIncendiary = 12,
-    ArcherCrossBow = 13
+    ArcherCrossBow = 13,
+    ChivalryArcher = 14,
+    ChivalryTemplar = 15
     
     
 } PieceType;
+
+typedef enum SKMainClass{
+
+    Chivalry = 0,
+    Archery = 1,
+    Mage = 2,
+    Foot = 3
+
+} MainClass;
 
 
 @property PieceType pieceType;
@@ -38,6 +49,7 @@ typedef enum SKPieceType {
 @property int attackDamage;
 @property int rangeMax;
 @property int rangeMin;
+@property int mainClass;
 @property BOOL canAttack;
 @property BOOL fireProof;
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;

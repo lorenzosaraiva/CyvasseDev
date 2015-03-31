@@ -25,6 +25,7 @@
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
+
     }
     
     if (type == 1){
@@ -58,13 +59,14 @@
         newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
-        newPiece.moveSpeed = 2;
+        newPiece.moveSpeed = 3;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 10;
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
         newPiece.fireProof = NO;
+        newPiece.mainClass = Chivalry;
     }
     
     if (type == 4){
