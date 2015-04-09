@@ -20,14 +20,14 @@
     SKCell *lastCell;
     SKCell *currentCell;
     UILabel *mainLabel;
+    UILabel *actionLabel;
     turnPhase currentPhase;
     
+    /* isWalking pode ser retirado ja, em fase de testes */
     BOOL isWalking;
     BOOL blackPlays;
-    BOOL selectAttacker;
     BOOL hasTarget;
     BOOL hasAttacker;
-    BOOL towerAttack;
     int moveCounter;
     int cells;
 }
@@ -35,17 +35,15 @@
 -(void)didMoveToView:(SKView *)view {
     blackPlays = false;
     isWalking = false;
-    selectAttacker = false;
     hasTarget = false;
     hasAttacker = false;
-    towerAttack = false;
     currentPhase = ChoseMove;
     cells = 0;
     moveCounter = 0;
     possibleCellsArray = [[NSMutableArray alloc]init];
     possibleAttackers = [[NSMutableArray alloc]init];
     cellArray = [[NSMutableArray alloc]init];
-    possibleTowerTargets =[[NSMutableArray alloc]init];
+    possibleTowerTargets = [[NSMutableArray alloc]init];
     [self createMap];
 }
 
@@ -53,19 +51,6 @@
     /* Called when a touch begins */
     UITouch *touch = [touches anyObject];
     CGPoint positionInScene = [touch locationInNode:self];
-    
-//    if (!isSelected && !isAttacking)
-//        [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
-//    else if (!isAttacking)
-//        [self movePiece:(SKPiece*)currentCell.currentPiece ToCell:positionInScene];
-//    else if (!selectAttacker){
-//        NSLog(@"Possible Attackers : %lu", (unsigned long)possibleAttackers.count);
-//        [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
-//    }
-//    else if (!towerAttack)
-//        [self attackCell:positionInScene];
-//    else
-//        [self attackCellWithTower:positionInScene];
 
     switch (currentPhase) {
         case ChoseMove:
@@ -82,6 +67,9 @@
             break;
         case ChoseTowerTarget:
             [self attackCellWithTower:positionInScene];
+            break;
+        case ChoseAction:
+            [self performActionOfCell:positionInScene];
             break;
     }
 }
@@ -128,8 +116,6 @@
         }
     }
     
-    selectAttacker = !selectAttacker;
-    towerAttack = !towerAttack;
     SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
     [lastCell runAction:unSelect];
     [self unHighlightAttackersCells];
@@ -138,11 +124,16 @@
     if ([self showTowerTargetsOfPlayer:blackPlays]){
         currentPhase = ChoseTowerTarget;
     }
+    else if ([self highlightsPossibleActionCellsOfPlayer:blackPlays]){
+        currentPhase = ChoseAction;
+    }
     else{
         currentPhase = ChoseMove;
         blackPlays = !blackPlays;
     }
 }
+
+/* Attaca uma cell com a torre */
 
 -(void)attackCellWithTower:(CGPoint)positionInScene{
     SKCell *tempCell;
@@ -159,14 +150,20 @@
             }
         }
     }
-    blackPlays = !blackPlays;
-    selectAttacker = !selectAttacker;
-    towerAttack = !towerAttack;
-    currentPhase = ChoseMove;
-    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
-    [lastCell runAction:unSelect];
+    
     [possibleAttackers removeAllObjects];
     [self unHighlightCells];
+    
+    if ([self highlightsPossibleActionCellsOfPlayer:blackPlays])
+        currentPhase = ChoseAction;
+    else{
+    currentPhase = ChoseMove;
+    blackPlays = !blackPlays;
+    }
+    
+    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    [lastCell runAction:unSelect];
+    
 }
 
 
@@ -174,7 +171,6 @@
 
 -(void)checkAttackersOnCell:(SKCell*)targetCell{
     SKCell *tempCell;
-    NSLog(@"ate aqui foi");
     SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
     [lastCell runAction:unSelect];
     [possibleCellsArray removeAllObjects];
@@ -183,7 +179,29 @@
         [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
         if ([possibleCellsArray containsObject:targetCell]){
             int temp = targetCell.currentPiece.hitPoints;
-            targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage;
+            
+            /* Dano com fogo */
+            if (currentCell.currentPiece.fireDamage){
+                if (tempCell.currentPiece.mainClass == Archer){
+                    targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage * targetCell.currentPiece.arrowDamageMultiplier * targetCell.currentPiece.fireDamageMultiplier;
+                }
+                else{
+                    targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage * targetCell.currentPiece.fireDamageMultiplier;
+                }
+            }
+            
+            /* Dano sem fogo */
+            else{
+                if (tempCell.currentPiece.mainClass == Archer){
+                    targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage * targetCell.currentPiece.arrowDamageMultiplier;
+                }
+                else{
+                    targetCell.currentPiece.hitPoints -= tempCell.currentPiece.attackDamage;
+                }
+            
+            
+            }
+            
             NSLog(@"Piece one attacks piece two with %d damage. Piece two hp goes from %d -> %d", tempCell.currentPiece.attackDamage, temp, targetCell.currentPiece.hitPoints);
             if (targetCell.currentPiece.hitPoints <= 0){
                 [targetCell removeAllChildren];
@@ -202,7 +220,7 @@
 -(void)checkSelectedCell:(CGPoint)positionInScene ofPlayer:(Player)player{
     SKCell *tempCell;
     BOOL foundIt = false;
-    if (!isWalking){
+    if (currentPhase != ChoseDirection){
         for (int i = 0; currentPhase != ChoseAttacker? i < cellArray.count : i < possibleAttackers.count; i++){
             tempCell = currentPhase != ChoseAttacker ? [cellArray objectAtIndex:i] : [possibleAttackers objectAtIndex:i];
         if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece != nil && tempCell.currentPiece.pieceType != Tower && tempCell.currentPiece.player == player){
@@ -216,10 +234,21 @@
 }
     if (foundIt){
         currentPhase++;
-        NSLog(@"A fase eh %d", currentPhase);
+        NSLog(@"Select function, current phase is %d", currentPhase);
     }
 }
 
+
+-(void)performActionOfCell:(CGPoint)positionInScene{
+    NSLog(@"Entrou na Action");
+    [self unHighlightCells];
+    currentPhase = ChoseMove;
+    blackPlays = !blackPlays;
+
+}
+
+
+/* Mostra que alvos podem ser atacados pelo jogador */
 -(BOOL)showTowerTargetsOfPlayer:(Player)player{
     SKCell * tempCell;
     [possibleTowerTargets removeAllObjects];
@@ -228,7 +257,6 @@
         if (tempCell.currentPiece.pieceType == Tower && tempCell.currentPiece.player != player){
 
             [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
-            NSLog(@"Possible cells eh %ld", (unsigned long)possibleCellsArray.count);
             [possibleTowerTargets addObjectsFromArray:possibleCellsArray];
         }
     }
@@ -237,7 +265,7 @@
         [targetCell runAction:[SKAction colorizeWithColor:[UIColor yellowColor] colorBlendFactor:1.0 duration:0.0f]];
     
     }
-    NSLog(@"Entrou, a count eh %ld",(unsigned long) possibleTowerTargets.count);
+    NSLog(@"Tower targets are %ld",(unsigned long) possibleTowerTargets.count);
     if (possibleTowerTargets.count == 0){
         return false;
     }
@@ -259,7 +287,6 @@
             [self highlightOptionsOfCell:cell];
         else{
             [self highlightAttackOptionsOfCell:cell withRangeMin:cell.currentPiece.rangeMin andMax:cell.currentPiece.rangeMax];
-            selectAttacker = !selectAttacker;
         }
     }
 }
@@ -270,7 +297,7 @@
     if (possibleCellsArray.count == 0){
         isWalking = false;
     }
-    NSLog(@"looking FOR");
+    NSLog(@"Start move function, current phase is %d", currentPhase);
     if (currentCell.currentPiece.mainClass == Chivalry){
         if (currentCell.currentPiece.hitPoints <= 5 ){
             currentCell.currentPiece.moveSpeed = 1;
@@ -301,12 +328,13 @@
                     else{
                         if ([self showTowerTargetsOfPlayer:blackPlays]){
                             currentPhase = ChoseTowerTarget;
+                        }else if ([self highlightsPossibleActionCellsOfPlayer:blackPlays]){
+                            currentPhase = ChoseAction;
+                            
                         }else{
                             currentPhase = ChoseMove;
                             blackPlays = !blackPlays;
                         }
-                        NSLog(@"Possible Attackers : %lu", (unsigned long)possibleAttackers.count);
-
                     }
                     
                 }
@@ -315,6 +343,8 @@
             
         }
     }
+    NSLog(@"End move function, current phase is %d", currentPhase);
+
 }
 
 -(void)unHighlightCells{
@@ -335,15 +365,36 @@
     [possibleAttackers removeAllObjects];
 }
 
+-(void)performAction{
+    if (currentPhase == ChoseAttackTarget)
+    switch (currentCell.currentPiece.pieceType) {
+        case InfantryShield:
+            NSLog(@"Aaaaaa");
+            break;
+    }
+
+
+}
+-(void)createHUD{
+    
+    mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - 300, 0,300, 100)];
+    mainLabel.backgroundColor = [UIColor redColor];
+    actionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 100)];
+    actionLabel.backgroundColor = [UIColor yellowColor];
+    actionLabel.userInteractionEnabled = YES;
+    [self.view addSubview:mainLabel];
+    [self.view addSubview:actionLabel];
+    
+    UITapGestureRecognizer *actionTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(performAction)];
+    [actionLabel addGestureRecognizer:actionTap];
+}
 
 -(void)createMap{
 
     BOOL blackOrWhite = false;
-    
-    mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - 300, 0,300, 100)];
-    mainLabel.backgroundColor = [UIColor redColor];
-    [self.view addSubview:mainLabel];
-    
+
+//    [self createHUD];
+
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
             UIColor * color = blackOrWhite? [UIColor brownColor]:[UIColor darkGrayColor];
@@ -441,6 +492,7 @@
     
 
 }
+
 -(void)pieceForCell:(SKCell*)cell{
     SKPiece *newPiece;
     Player player =  cell.line < 10? Black:White;
@@ -523,10 +575,10 @@
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 7:
-                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
@@ -915,6 +967,23 @@
         hasTarget = true;
     }
     
+}
+
+-(BOOL)highlightsPossibleActionCellsOfPlayer:(Player)player{
+
+    SKCell *tempCell;
+
+    for (int i = 0; i < cellArray.count; i++){
+        tempCell = cellArray[i];
+        if (tempCell.currentPiece.pieceType == InfantryShield && tempCell.currentPiece.player != player){
+            [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:1 duration:0]];
+            [possibleCellsArray addObject:tempCell];
+        }
+    }
+    if (possibleCellsArray.count == 0){
+        return false;
+    }
+    return true;
 }
 
 -(SKCell*)cellForLine:(int)line andColumn:(int)column{

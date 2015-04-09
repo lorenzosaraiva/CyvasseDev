@@ -24,7 +24,9 @@
         newPiece.attackDamage = 3;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
 
     }
     
@@ -38,7 +40,11 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+
+
     }
     
     if (type == 2){
@@ -51,25 +57,35 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 2;
         newPiece.rangeMax = 3;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+        newPiece.mainClass = Archer;
+
+
     
     }
     
     if (type == 3){
+        /* Scout */
         newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 3;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 10;
-        newPiece.attackDamage = 5;
+        newPiece.attackDamage = 3;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
+        newPiece.arrowDamageMultiplier = 1;
+
     }
     
     if (type == 4){
+        /* FireMage */
         newPiece = [SKPiece spriteNodeWithImageNamed:@"firemage.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
@@ -79,10 +95,15 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = YES;
+        newPiece.fireDamageMultiplier = 0;
+        newPiece.fireDamage = 1;
+        newPiece.arrowDamageMultiplier = 1;
+
+
     }
     
     if (type == 5){
+        /* LightMage */
         newPiece = [SKPiece spriteNodeWithImageNamed:@"lightmage.gif"];
         newPiece.player = player;
         newPiece.pieceType = type;
@@ -92,7 +113,10 @@
         newPiece.attackDamage = 10;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = YES;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+
         
     }
     
@@ -106,6 +130,10 @@
         newPiece.attackDamage = 7;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
+        newPiece.fireDamageMultiplier = 0;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 0;
+
         
     }
     
@@ -119,7 +147,10 @@
         newPiece.attackDamage = 10;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;;
-        newPiece.fireProof = YES;
+        newPiece.fireDamageMultiplier = 0;
+        newPiece.fireDamage = 1;
+        newPiece.arrowDamageMultiplier = 1;
+
         
     }
     
@@ -133,7 +164,10 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = YES;
+        newPiece.fireDamageMultiplier = 0;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+
         
     }
     
@@ -147,24 +181,31 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 2;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+
         
     }
     
     if (type == 10){
+        /* Catapulta */
         newPiece = [SKPiece spriteNodeWithImageNamed:@"catapult.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
-        newPiece.hitPoints = 3;
+        newPiece.hitPoints = 6;
         newPiece.attackDamage = 10;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 2;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 0;
         
     }
     if (type == 11){
+        /* Sniper */
         newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
@@ -174,10 +215,15 @@
         newPiece.attackDamage = 7;
         newPiece.rangeMin = 3;
         newPiece.rangeMax = 4;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+        newPiece.mainClass = Archer;
         
     }
     if (type == 12){
+        /* FireArcher */
+        
         newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
@@ -187,10 +233,16 @@
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 2;
         newPiece.rangeMax = 3;
-        newPiece.fireProof = NO;
-        
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 1;
+        newPiece.arrowDamageMultiplier = 1;
+        newPiece.mainClass = Archer;
+
     }
     if (type == 13){
+        
+        /* CrossbowMan */
+        
         newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
@@ -198,9 +250,68 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 7;
-        newPiece.rangeMin = 2;
+        newPiece.rangeMin = 1;
         newPiece.rangeMax = 2;
-        newPiece.fireProof = NO;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 1;
+        newPiece.mainClass = Archer;
+    }
+    if (type == 14){
+        
+        /* ChivalryArcher */
+        
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 2;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 10;
+        newPiece.attackDamage = 5;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 2;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.mainClass = Chivalry;
+        newPiece.arrowDamageMultiplier = 1;
+
+    }
+    if (type == 15){
+        
+        /* Templar */
+        
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 12;
+        newPiece.attackDamage = 6;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
+        newPiece.fireDamageMultiplier = 0;
+        newPiece.fireDamage = 0;
+        newPiece.mainClass = Chivalry;
+        newPiece.arrowDamageMultiplier = 0;
+
+    }
+    if (type == 16){
+        
+        /* Barrier */
+        
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"pawn.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 5;
+        newPiece.attackDamage = 5;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 0;
+
         
     }
     return newPiece;
