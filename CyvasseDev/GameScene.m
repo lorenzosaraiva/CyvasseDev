@@ -17,14 +17,13 @@
     NSMutableArray *possibleCellsArray;
     NSMutableArray *possibleAttackers;
     NSMutableArray *possibleTowerTargets;
+    NSMutableArray *possibleActionCells;
     SKCell *lastCell;
     SKCell *currentCell;
     UILabel *mainLabel;
     UILabel *actionLabel;
     turnPhase currentPhase;
     
-    /* isWalking pode ser retirado ja, em fase de testes */
-    BOOL isWalking;
     BOOL blackPlays;
     BOOL hasTarget;
     BOOL hasAttacker;
@@ -34,7 +33,6 @@
 
 -(void)didMoveToView:(SKView *)view {
     blackPlays = false;
-    isWalking = false;
     hasTarget = false;
     hasAttacker = false;
     currentPhase = ChoseMove;
@@ -44,6 +42,7 @@
     possibleAttackers = [[NSMutableArray alloc]init];
     cellArray = [[NSMutableArray alloc]init];
     possibleTowerTargets = [[NSMutableArray alloc]init];
+    possibleActionCells = [[NSMutableArray alloc]init];
     [self createMap];
 }
 
@@ -238,17 +237,64 @@
     }
 }
 
+/* Verificada qual foi a peça escolhida para realizar a action */
 
 -(void)performActionOfCell:(CGPoint)positionInScene{
-    NSLog(@"Entrou na Action");
-    [self unHighlightCells];
+    SKCell * tempCell;
+    for (int i = 0; i < possibleActionCells.count; i++){
+        tempCell = possibleActionCells[i];
+        if ([tempCell containsPoint:positionInScene]){
+            [self actionForCell:tempCell];
+        }
+    }
+    [self unHighlightCellsOfAction];
     currentPhase = ChoseMove;
     blackPlays = !blackPlays;
-
 }
 
+/* Acha a action correspondente dependendo da piece */
 
+-(void)actionForCell:(SKCell*)actionCell{
+
+    switch (actionCell.currentPiece.pieceType) {
+        case FireMage:
+        {
+            [self highlightAttackOptionsOfCell:actionCell withRangeMin:1 andMax:1];
+            SKAction *burnUp = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1 duration:0.2f];
+            SKCell * tempCell;
+            for (int i = 0; i < possibleCellsArray.count; i++){
+                tempCell = possibleCellsArray[i];
+                SKAction *burnDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.player != actionCell.currentPiece.player){
+                    int temp = tempCell.currentPiece.hitPoints;
+                    tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
+                    NSLog(@"HP of piece was burned from %d to %d", temp, tempCell.currentPiece.hitPoints);
+                    if (tempCell.currentPiece.hitPoints <= 0){
+                        [tempCell removeAllChildren];
+                        tempCell.currentPiece = nil;
+                    }
+                }
+            }
+            break;
+        }
+        case LightMage:
+        {
+            [self highlightAttackOptionsOfCell:actionCell withRangeMin:2 andMax:2];
+            break;
+        }
+            break;
+        case InfantrySaboteur:
+            break;
+        default:
+            break;
+    }
+
+
+
+}
 /* Mostra que alvos podem ser atacados pelo jogador */
+
 -(BOOL)showTowerTargetsOfPlayer:(Player)player{
     SKCell * tempCell;
     [possibleTowerTargets removeAllObjects];
@@ -294,9 +340,7 @@
 
 -(void)movePiece:(SKPiece*)piece ToCell:(CGPoint)positionInScene{
     SKCell *destinyCell;
-    if (possibleCellsArray.count == 0){
-        isWalking = false;
-    }
+    
     NSLog(@"Start move function, current phase is %d", currentPhase);
     if (currentCell.currentPiece.mainClass == Chivalry){
         if (currentCell.currentPiece.hitPoints <= 5 ){
@@ -312,14 +356,12 @@
                 [currentCell removeAllChildren];
                 [destinyCell addChild:destinyCell.currentPiece];
                 currentCell = destinyCell;
-                isWalking = true;
                 [self unHighlightCells];
                 [self selectCell:destinyCell];
                 
                 moveCounter++;
                 if (moveCounter == piece.moveSpeed){
                     moveCounter = 0;
-                    isWalking = false;
                     [self unHighlightCells];
                     if ([self checkPossibleAttacksOfPlayer:blackPlays]){
                         currentPhase = ChoseAttacker;
@@ -356,6 +398,15 @@
     [possibleCellsArray removeAllObjects];
 }
 
+-(void)unHighlightCellsOfAction{
+    SKCell *tempCell;
+    for (int i = 0; i < possibleActionCells.count; i++){
+        tempCell = [possibleActionCells objectAtIndex:i];
+        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+    }
+    [possibleActionCells removeAllObjects];
+}
+
 -(void)unHighlightAttackersCells{
     SKCell *tempCell;
     for (int i = 0; i < possibleAttackers.count; i++){
@@ -365,16 +416,7 @@
     [possibleAttackers removeAllObjects];
 }
 
--(void)performAction{
-    if (currentPhase == ChoseAttackTarget)
-    switch (currentCell.currentPiece.pieceType) {
-        case InfantryShield:
-            NSLog(@"Aaaaaa");
-            break;
-    }
 
-
-}
 -(void)createHUD{
     
     mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - 300, 0,300, 100)];
@@ -385,8 +427,7 @@
     [self.view addSubview:mainLabel];
     [self.view addSubview:actionLabel];
     
-    UITapGestureRecognizer *actionTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(performAction)];
-    [actionLabel addGestureRecognizer:actionTap];
+   
 }
 
 -(void)createMap{
@@ -578,7 +619,7 @@
                 newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:FireMage ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
@@ -975,12 +1016,12 @@
 
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
-        if (tempCell.currentPiece.pieceType == InfantryShield && tempCell.currentPiece.player != player){
+        if (tempCell.currentPiece.hasAction && tempCell.currentPiece.player != player){
             [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:1 duration:0]];
-            [possibleCellsArray addObject:tempCell];
+            [possibleActionCells addObject:tempCell];
         }
     }
-    if (possibleCellsArray.count == 0){
+    if (possibleActionCells.count == 0){
         return false;
     }
     return true;

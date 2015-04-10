@@ -14,6 +14,7 @@
 
     SKPiece *newPiece;
     newPiece.canAttack = true;
+    
     if (type == 0){
         newPiece = [SKPiece spriteNodeWithImageNamed:@"King.png"];
         newPiece.player = player;
@@ -92,12 +93,13 @@
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
-        newPiece.attackDamage = 5;
+        newPiece.attackDamage = 2;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.hasAction = true;
 
 
     }
@@ -116,6 +118,7 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.hasAction = true;
 
         
     }
@@ -150,6 +153,7 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.hasAction = true;
 
         
     }
@@ -167,7 +171,7 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
-
+        
         
     }
     
@@ -311,7 +315,29 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
+        newPiece.hasAction = true;
 
+        
+    }
+    if (type == 17){
+        
+        /* Saboteur */
+        
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"pawn.png"];
+        newPiece.player = player;
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 1;
+        newPiece.size = CGSizeMake(40, 40);
+        newPiece.hitPoints = 5;
+        newPiece.attackDamage = 5;
+        newPiece.rangeMin = 1;
+        newPiece.rangeMax = 1;
+        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 0;
+        newPiece.hasAction = true;
+        
+        
         
     }
     return newPiece;
