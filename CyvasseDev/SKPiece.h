@@ -59,5 +59,6 @@ typedef enum SKMainClass{
 @property BOOL hasAction;
 
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;
+- (void)performActionForPiece;
 
 @end

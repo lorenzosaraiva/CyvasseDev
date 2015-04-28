@@ -24,7 +24,8 @@ typedef enum TurnPhase {
     ChoseAttacker = 2,
     ChoseAttackTarget = 3,
     ChoseTowerTarget = 4,
-    ChoseAction = 5
+    ChoseAction = 5,
+    ChoseActionTarget = 6
 
 } turnPhase;
 

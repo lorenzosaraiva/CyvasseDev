@@ -112,7 +112,7 @@
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
-        newPiece.attackDamage = 10;
+        newPiece.attackDamage = 2;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
         newPiece.fireDamageMultiplier = 1;
@@ -341,6 +341,11 @@
         
     }
     return newPiece;
+
+}
+
+- (void)performActionForPiece{
+    
 
 }
 
