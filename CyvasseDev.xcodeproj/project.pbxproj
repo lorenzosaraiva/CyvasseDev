@@ -26,6 +26,8 @@
 		0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94931AF2C745008B0EE9 /* altfiremage.png */; };
 		0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */; };
 		0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */; };
+		0A3C949B1AF2D1D5008B0EE9 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C949A1AF2D1D5008B0EE9 /* tree.png */; };
+		0A3C949D1AF2D1DB008B0EE9 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C949C1AF2D1DB008B0EE9 /* mountain.png */; };
 		0A91C9F81AAF32F700D7B54D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9F71AAF32F700D7B54D /* main.m */; };
 		0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */; };
 		0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FD1AAF32F700D7B54D /* GameScene.m */; };
@@ -72,6 +74,8 @@
 		0A3C94931AF2C745008B0EE9 /* altfiremage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altfiremage.png; sourceTree = "<group>"; };
 		0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altcatapult.png; sourceTree = "<group>"; };
 		0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altdragonslayer.png; sourceTree = "<group>"; };
+		0A3C949A1AF2D1D5008B0EE9 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		0A3C949C1AF2D1DB008B0EE9 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain.png; sourceTree = "<group>"; };
 		0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyvasseDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A91C9F61AAF32F700D7B54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A91C9F71AAF32F700D7B54D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,7 +137,7 @@
 			name = Black;
 			sourceTree = "<group>";
 		};
-		0A3C94801AF2C5C2008B0EE9 /* Alt */ = {
+		0A3C94801AF2C5C2008B0EE9 /* Alternative */ = {
 			isa = PBXGroup;
 			children = (
 				0A3C94831AF2C5ED008B0EE9 /* altarcher.png */,
@@ -148,7 +152,16 @@
 				0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */,
 				0A3C948A1AF2C5ED008B0EE9 /* alttower.png */,
 			);
-			name = Alt;
+			name = Alternative;
+			sourceTree = "<group>";
+		};
+		0A3C94991AF2D1CE008B0EE9 /* Giants */ = {
+			isa = PBXGroup;
+			children = (
+				0A3C949C1AF2D1DB008B0EE9 /* mountain.png */,
+				0A3C949A1AF2D1D5008B0EE9 /* tree.png */,
+			);
+			name = Giants;
 			sourceTree = "<group>";
 		};
 		0A91C9E91AAF32F700D7B54D = {
@@ -229,7 +242,8 @@
 		0AE093CA1AB130FC003EBEA2 /* Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				0A3C94801AF2C5C2008B0EE9 /* Alt */,
+				0A3C94991AF2D1CE008B0EE9 /* Giants */,
+				0A3C94801AF2C5C2008B0EE9 /* Alternative */,
 				0A3C947F1AF2C5BD008B0EE9 /* Black */,
 			);
 			name = Pieces;
@@ -317,6 +331,7 @@
 			files = (
 				0A3C94901AF2C5ED008B0EE9 /* altpawn.png in Resources */,
 				0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */,
+				0A3C949B1AF2D1D5008B0EE9 /* tree.png in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
 				0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */,
 				0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */,
@@ -324,6 +339,7 @@
 				0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */,
 				0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */,
 				0A3C948C1AF2C5ED008B0EE9 /* altdragon.png in Resources */,
+				0A3C949D1AF2D1DB008B0EE9 /* mountain.png in Resources */,
 				0A3C94781AF2BBAB008B0EE9 /* royalguard.png in Resources */,
 				0A3C947C1AF2C000008B0EE9 /* dragonslayer.png in Resources */,
 				0A3C948D1AF2C5ED008B0EE9 /* althorse.png in Resources */,

@@ -29,8 +29,9 @@ typedef enum SKPieceType {
     ChivalryArcher = 14,
     ChivalryTemplar = 15,
     InfantryShield = 16,
-    InfantrySaboteur = 17
-    
+    InfantrySaboteur = 17,
+    StoneGiant = 18,
+    TreeGiant = 19
     
 } PieceType;
 

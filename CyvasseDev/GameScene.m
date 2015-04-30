@@ -153,6 +153,16 @@
     
         [self createHUD];
     
+    SKPiece* treeGiant = [SKPiece initPieceOfType:TreeGiant ofPlayer:2];
+    treeGiant.position = CGPointMake(CGRectGetMidX(self.frame) - 360,CGRectGetMidY(self.frame));
+    treeGiant.size = CGSizeMake(40, 40);
+    [self addChild:treeGiant];
+
+    SKPiece* stoneGiant = [SKPiece initPieceOfType:StoneGiant ofPlayer:2];
+    stoneGiant.position = CGPointMake(CGRectGetMidX(self.frame) + 355,CGRectGetMidY(self.frame));
+    stoneGiant.size = CGSizeMake(40, 40);
+    [self addChild:stoneGiant];
+    
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
             UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
@@ -604,7 +614,7 @@
         }
         [targetCell runAction:[SKAction colorizeWithColor:targetCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
         [self unHighlightAttackersCells];
-        [self unHighlightCells];
+        [self unHighlightAllCells];
     }
 
 
@@ -696,7 +706,7 @@
                 [self selectCell:destinyCell];
                 
                 moveCounter++;
-                if (moveCounter == piece.moveSpeed){
+                if (moveCounter >= piece.moveSpeed){
                     moveCounter = 0;
                     [self unHighlightCells];
                     if ([self checkPossibleAttacksOfPlayer:blackPlays]){
@@ -841,6 +851,13 @@
             actionIsSimple = false;
             break;
         }
+        case Dragon:
+        {
+            currentCell = actionCell;
+            [self highlightAttackOptionsOfCell:actionCell withRangeMin:1 andMax:2];
+            actionIsSimple = false;
+            break;
+        }
         default:
         {
             actionIsSimple = true;
@@ -882,6 +899,25 @@
                 tempCell.currentPiece.hitPoints += 5;
                 if (tempCell.currentPiece.hitPoints > tempCell.currentPiece.maxHitPoints)
                     tempCell.currentPiece.hitPoints = tempCell.currentPiece.maxHitPoints;
+            }
+            
+        }
+        
+    }
+    
+    if (actionCell.currentPiece.pieceType == Dragon){
+        SKCell * tempCell;
+        for (int i = 0; i < possibleCellsArray.count; i++){
+            tempCell = possibleCellsArray[i];
+            if ([tempCell containsPoint:positionInScene]){
+                SKAction *burnUp = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1 duration:0.4f];
+                SKAction *burnDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
+                tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
+                if (tempCell.currentPiece.hitPoints <= 0){
+                    [tempCell removeAllChildren];
+                    tempCell.currentPiece = nil;
+                }
             }
             
         }
@@ -1457,8 +1493,8 @@
             
             // Checa para ver se a ação precisa de target
             
-            if (tempCell.currentPiece.pieceType == LightMage){
-                [self highlightAttackOptionsOfCell:tempCell withRangeMin:2 andMax:2];
+            if (tempCell.currentPiece.pieceType == LightMage || tempCell.currentPiece.pieceType == Dragon){
+                [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
                 if (possibleCellsArray.count == 0){
                     continue;
                 }else{
@@ -1668,7 +1704,7 @@
                 newPiece = [SKPiece initPieceOfType:InfantrySaboteur ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:LightMage ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
