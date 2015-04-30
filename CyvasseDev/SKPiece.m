@@ -16,7 +16,7 @@
     newPiece.canAttack = true;
     
     if (type == 0){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"King.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"king"]:[SKPiece spriteNodeWithImageNamed:@"altking.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -28,11 +28,13 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.maxHitPoints = newPiece.hitPoints;
+        
 
     }
     
     if (type == 1){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"pawn.png"];
+        newPiece =  player? [SKPiece spriteNodeWithImageNamed:@"pawn"]:[SKPiece spriteNodeWithImageNamed:@"altpawn"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -44,12 +46,13 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
 
     }
     
     if (type == 2){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"archer"]:[SKPiece spriteNodeWithImageNamed:@"altarcher"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -62,14 +65,13 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.mainClass = Archer;
-
-
+        newPiece.maxHitPoints = newPiece.hitPoints;
     
     }
     
     if (type == 3){
         /* Scout */
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"horse"]:[SKPiece spriteNodeWithImageNamed:@"althorse"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 3;
@@ -82,12 +84,13 @@
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
     }
     
     if (type == 4){
         /* FireMage */
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"firemage.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"firemage"]:[SKPiece spriteNodeWithImageNamed:@"altfiremage"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -100,13 +103,13 @@
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
-
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
     }
     
     if (type == 5){
         /* LightMage */
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"lightmage.gif"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"lightmage"]:[SKPiece spriteNodeWithImageNamed:@"altlightmage"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -119,12 +122,12 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
-
+        newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
     
     if (type == 6){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"royalguard.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"royalguard.png"]:[SKPiece spriteNodeWithImageNamed:@"altroyalguard.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -136,12 +139,13 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
-
+        newPiece.maxHitPoints = newPiece.hitPoints;
+        newPiece.hasAction = true;
         
     }
     
     if (type == 7){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"dragon.jpg"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"dragon"]:[SKPiece spriteNodeWithImageNamed:@"altdragon"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -154,12 +158,13 @@
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
+        newPiece.mainClass = Chivalry;
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
-        
     }
     
     if (type == 8){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"dragonslayer.jpg"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"dragonslayer"]:[SKPiece spriteNodeWithImageNamed:@"altdragonslayer"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -171,12 +176,12 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
-        
+        newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
     
     if (type == 9){
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"tower.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"tower.png"]:[SKPiece spriteNodeWithImageNamed:@"alttower.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 0;
@@ -184,17 +189,17 @@
         newPiece.hitPoints = 30;
         newPiece.attackDamage = 5;
         newPiece.rangeMin = 1;
-        newPiece.rangeMax = 1;
+        newPiece.rangeMax = 2;
         newPiece.fireDamageMultiplier = 2;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
-        
     }
     
     if (type == 10){
         /* Catapulta */
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"catapult.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"catapult.png"]:[SKPiece spriteNodeWithImageNamed:@"altcatapult.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -206,11 +211,12 @@
         newPiece.fireDamageMultiplier = 2;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
-        
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
     }
     if (type == 11){
         /* Sniper */
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"archer"]:[SKPiece spriteNodeWithImageNamed:@"altarcher"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -223,12 +229,13 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.mainClass = Archer;
-        
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
     }
     if (type == 12){
         /* FireArcher */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"archer"]:[SKPiece spriteNodeWithImageNamed:@"altarcher"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -241,13 +248,14 @@
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.mainClass = Archer;
+        newPiece.maxHitPoints = newPiece.hitPoints;
 
     }
     if (type == 13){
         
         /* CrossbowMan */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"archer.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"archer"]:[SKPiece spriteNodeWithImageNamed:@"altarcher"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -260,12 +268,14 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.mainClass = Archer;
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
     }
     if (type == 14){
         
         /* ChivalryArcher */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"horse"]:[SKPiece spriteNodeWithImageNamed:@"althorse"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -278,13 +288,15 @@
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
 
     }
     if (type == 15){
         
         /* Templar */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"horse.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"horse"]:[SKPiece spriteNodeWithImageNamed:@"althorse"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -297,13 +309,15 @@
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
         newPiece.arrowDamageMultiplier = 0;
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
 
     }
     if (type == 16){
         
         /* Barrier */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"pawn.png"];
+        newPiece =  player? [SKPiece spriteNodeWithImageNamed:@"pawn"]:[SKPiece spriteNodeWithImageNamed:@"altpawn"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -316,14 +330,14 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
         newPiece.hasAction = true;
-
+        newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
     if (type == 17){
         
         /* Saboteur */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"pawn.png"];
+        newPiece =  player? [SKPiece spriteNodeWithImageNamed:@"pawn"]:[SKPiece spriteNodeWithImageNamed:@"altpawn"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
@@ -336,8 +350,8 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
         newPiece.hasAction = true;
-        
-        
+        newPiece.maxHitPoints = newPiece.hitPoints;
+
         
     }
     return newPiece;

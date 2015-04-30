@@ -48,6 +48,7 @@ typedef enum SKMainClass{
 @property int player;
 @property int moveSpeed;
 @property int hitPoints;
+@property int maxHitPoints;
 @property int attackDamage;
 @property int rangeMax;
 @property int rangeMin;

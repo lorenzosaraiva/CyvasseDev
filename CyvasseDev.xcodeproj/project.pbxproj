@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946A1AF2BBAB008B0EE9 /* dragon.png */; };
+		0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946C1AF2BBAB008B0EE9 /* firemage.png */; };
+		0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946D1AF2BBAB008B0EE9 /* horse.png */; };
+		0A3C94761AF2BBAB008B0EE9 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946E1AF2BBAB008B0EE9 /* king.png */; };
+		0A3C94781AF2BBAB008B0EE9 /* royalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94701AF2BBAB008B0EE9 /* royalguard.png */; };
+		0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94791AF2BCB8008B0EE9 /* lightmage.png */; };
+		0A3C947C1AF2C000008B0EE9 /* dragonslayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */; };
+		0A3C94821AF2C5E2008B0EE9 /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94811AF2C5E2008B0EE9 /* archer.png */; };
+		0A3C948B1AF2C5ED008B0EE9 /* altarcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94831AF2C5ED008B0EE9 /* altarcher.png */; };
+		0A3C948C1AF2C5ED008B0EE9 /* altdragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94841AF2C5ED008B0EE9 /* altdragon.png */; };
+		0A3C948D1AF2C5ED008B0EE9 /* althorse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94851AF2C5ED008B0EE9 /* althorse.png */; };
+		0A3C948E1AF2C5ED008B0EE9 /* altking.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94861AF2C5ED008B0EE9 /* altking.png */; };
+		0A3C948F1AF2C5ED008B0EE9 /* altlightmage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */; };
+		0A3C94901AF2C5ED008B0EE9 /* altpawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94881AF2C5ED008B0EE9 /* altpawn.png */; };
+		0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */; };
+		0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C948A1AF2C5ED008B0EE9 /* alttower.png */; };
+		0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94931AF2C745008B0EE9 /* altfiremage.png */; };
+		0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */; };
+		0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */; };
 		0A91C9F81AAF32F700D7B54D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9F71AAF32F700D7B54D /* main.m */; };
 		0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */; };
 		0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FD1AAF32F700D7B54D /* GameScene.m */; };
@@ -18,17 +37,8 @@
 		0A91CA171AAF32F800D7B54D /* CyvasseDevTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA161AAF32F800D7B54D /* CyvasseDevTests.m */; };
 		0A91CA261AAF349000D7B54D /* SKCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91CA251AAF349000D7B54D /* SKCell.m */; };
 		0ADE5EC61ABCA4B5003A7F21 /* pawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EC51ABCA4B5003A7F21 /* pawn.png */; };
-		0ADE5ECA1ABCA720003A7F21 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EC91ABCA720003A7F21 /* horse.png */; };
-		0ADE5ED01ABCA8C0003A7F21 /* lightmage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */; };
-		0ADE5ED21ABCAA3E003A7F21 /* dragon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */; };
-		0ADE5ED41ABCAB5A003A7F21 /* dragonslayer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */; };
-		0ADE5EDA1ABCB4B0003A7F21 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5ED91ABCB4B0003A7F21 /* firemage.png */; };
-		0ADE5EDC1ABCB50E003A7F21 /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDB1ABCB50E003A7F21 /* archer.png */; };
-		0ADE5EDE1ABCB5F9003A7F21 /* royalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */; };
 		0ADE5EE01ABCB81D003A7F21 /* tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE5EDF1ABCB81D003A7F21 /* tower.png */; };
 		0AE093C71AB12FEE003EBEA2 /* SKPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093C61AB12FEE003EBEA2 /* SKPiece.m */; };
-		0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CB1AB1310B003EBEA2 /* queen.png */; };
-		0AE093CE1AB13111003EBEA2 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093CD1AB13111003EBEA2 /* king.png */; };
 		0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093D41AC0D2CA003EBEA2 /* catapult.png */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +53,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3C946A1AF2BBAB008B0EE9 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
+		0A3C946C1AF2BBAB008B0EE9 /* firemage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firemage.png; sourceTree = "<group>"; };
+		0A3C946D1AF2BBAB008B0EE9 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		0A3C946E1AF2BBAB008B0EE9 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
+		0A3C94701AF2BBAB008B0EE9 /* royalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = royalguard.png; sourceTree = "<group>"; };
+		0A3C94791AF2BCB8008B0EE9 /* lightmage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightmage.png; sourceTree = "<group>"; };
+		0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragonslayer.png; sourceTree = "<group>"; };
+		0A3C94811AF2C5E2008B0EE9 /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
+		0A3C94831AF2C5ED008B0EE9 /* altarcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altarcher.png; sourceTree = "<group>"; };
+		0A3C94841AF2C5ED008B0EE9 /* altdragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altdragon.png; sourceTree = "<group>"; };
+		0A3C94851AF2C5ED008B0EE9 /* althorse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = althorse.png; sourceTree = "<group>"; };
+		0A3C94861AF2C5ED008B0EE9 /* altking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altking.png; sourceTree = "<group>"; };
+		0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altlightmage.png; sourceTree = "<group>"; };
+		0A3C94881AF2C5ED008B0EE9 /* altpawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altpawn.png; sourceTree = "<group>"; };
+		0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altroyalguard.png; sourceTree = "<group>"; };
+		0A3C948A1AF2C5ED008B0EE9 /* alttower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alttower.png; sourceTree = "<group>"; };
+		0A3C94931AF2C745008B0EE9 /* altfiremage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altfiremage.png; sourceTree = "<group>"; };
+		0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altcatapult.png; sourceTree = "<group>"; };
+		0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altdragonslayer.png; sourceTree = "<group>"; };
 		0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyvasseDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A91C9F61AAF32F700D7B54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A91C9F71AAF32F700D7B54D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,18 +91,9 @@
 		0A91CA241AAF349000D7B54D /* SKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKCell.h; path = ../SKCell.h; sourceTree = "<group>"; };
 		0A91CA251AAF349000D7B54D /* SKCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKCell.m; path = ../SKCell.m; sourceTree = "<group>"; };
 		0ADE5EC51ABCA4B5003A7F21 /* pawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pawn.png; sourceTree = "<group>"; };
-		0ADE5EC91ABCA720003A7F21 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
-		0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lightmage.gif; sourceTree = "<group>"; };
-		0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dragon.jpg; sourceTree = "<group>"; };
-		0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dragonslayer.jpg; sourceTree = "<group>"; };
-		0ADE5ED91ABCB4B0003A7F21 /* firemage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firemage.png; sourceTree = "<group>"; };
-		0ADE5EDB1ABCB50E003A7F21 /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
-		0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = royalguard.png; sourceTree = "<group>"; };
 		0ADE5EDF1ABCB81D003A7F21 /* tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower.png; sourceTree = "<group>"; };
 		0AE093C51AB12FEE003EBEA2 /* SKPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPiece.h; sourceTree = "<group>"; };
 		0AE093C61AB12FEE003EBEA2 /* SKPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPiece.m; sourceTree = "<group>"; };
-		0AE093CB1AB1310B003EBEA2 /* queen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = queen.png; sourceTree = "<group>"; };
-		0AE093CD1AB13111003EBEA2 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
 		0AE093D41AC0D2CA003EBEA2 /* catapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catapult.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +115,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3C947F1AF2C5BD008B0EE9 /* Black */ = {
+			isa = PBXGroup;
+			children = (
+				0A3C946A1AF2BBAB008B0EE9 /* dragon.png */,
+				0A3C946C1AF2BBAB008B0EE9 /* firemage.png */,
+				0A3C946D1AF2BBAB008B0EE9 /* horse.png */,
+				0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */,
+				0A3C94811AF2C5E2008B0EE9 /* archer.png */,
+				0A3C946E1AF2BBAB008B0EE9 /* king.png */,
+				0A3C94791AF2BCB8008B0EE9 /* lightmage.png */,
+				0A3C94701AF2BBAB008B0EE9 /* royalguard.png */,
+				0ADE5EC51ABCA4B5003A7F21 /* pawn.png */,
+				0AE093D41AC0D2CA003EBEA2 /* catapult.png */,
+				0ADE5EDF1ABCB81D003A7F21 /* tower.png */,
+			);
+			name = Black;
+			sourceTree = "<group>";
+		};
+		0A3C94801AF2C5C2008B0EE9 /* Alt */ = {
+			isa = PBXGroup;
+			children = (
+				0A3C94831AF2C5ED008B0EE9 /* altarcher.png */,
+				0A3C94931AF2C745008B0EE9 /* altfiremage.png */,
+				0A3C94841AF2C5ED008B0EE9 /* altdragon.png */,
+				0A3C94851AF2C5ED008B0EE9 /* althorse.png */,
+				0A3C94861AF2C5ED008B0EE9 /* altking.png */,
+				0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */,
+				0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */,
+				0A3C94881AF2C5ED008B0EE9 /* altpawn.png */,
+				0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */,
+				0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */,
+				0A3C948A1AF2C5ED008B0EE9 /* alttower.png */,
+			);
+			name = Alt;
+			sourceTree = "<group>";
+		};
 		0A91C9E91AAF32F700D7B54D = {
 			isa = PBXGroup;
 			children = (
@@ -173,18 +229,8 @@
 		0AE093CA1AB130FC003EBEA2 /* Pieces */ = {
 			isa = PBXGroup;
 			children = (
-				0AE093CD1AB13111003EBEA2 /* king.png */,
-				0AE093CB1AB1310B003EBEA2 /* queen.png */,
-				0ADE5EC51ABCA4B5003A7F21 /* pawn.png */,
-				0ADE5EC91ABCA720003A7F21 /* horse.png */,
-				0ADE5EDB1ABCB50E003A7F21 /* archer.png */,
-				0ADE5ECF1ABCA8C0003A7F21 /* lightmage.gif */,
-				0ADE5ED91ABCB4B0003A7F21 /* firemage.png */,
-				0ADE5ED11ABCAA3E003A7F21 /* dragon.jpg */,
-				0AE093D41AC0D2CA003EBEA2 /* catapult.png */,
-				0ADE5EDF1ABCB81D003A7F21 /* tower.png */,
-				0ADE5ED31ABCAB5A003A7F21 /* dragonslayer.jpg */,
-				0ADE5EDD1ABCB5F9003A7F21 /* royalguard.png */,
+				0A3C94801AF2C5C2008B0EE9 /* Alt */,
+				0A3C947F1AF2C5BD008B0EE9 /* Black */,
 			);
 			name = Pieces;
 			sourceTree = "<group>";
@@ -269,21 +315,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADE5ED01ABCA8C0003A7F21 /* lightmage.gif in Resources */,
-				0AE093CE1AB13111003EBEA2 /* king.png in Resources */,
-				0ADE5ECA1ABCA720003A7F21 /* horse.png in Resources */,
-				0ADE5EDA1ABCB4B0003A7F21 /* firemage.png in Resources */,
-				0ADE5ED21ABCAA3E003A7F21 /* dragon.jpg in Resources */,
+				0A3C94901AF2C5ED008B0EE9 /* altpawn.png in Resources */,
+				0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
-				0ADE5EDE1ABCB5F9003A7F21 /* royalguard.png in Resources */,
-				0ADE5EDC1ABCB50E003A7F21 /* archer.png in Resources */,
+				0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */,
+				0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */,
 				0ADE5EE01ABCB81D003A7F21 /* tower.png in Resources */,
+				0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */,
 				0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */,
+				0A3C948C1AF2C5ED008B0EE9 /* altdragon.png in Resources */,
+				0A3C94781AF2BBAB008B0EE9 /* royalguard.png in Resources */,
+				0A3C947C1AF2C000008B0EE9 /* dragonslayer.png in Resources */,
+				0A3C948D1AF2C5ED008B0EE9 /* althorse.png in Resources */,
+				0A3C948B1AF2C5ED008B0EE9 /* altarcher.png in Resources */,
 				0ADE5EC61ABCA4B5003A7F21 /* pawn.png in Resources */,
-				0AE093CC1AB1310B003EBEA2 /* queen.png in Resources */,
+				0A3C948F1AF2C5ED008B0EE9 /* altlightmage.png in Resources */,
+				0A3C94821AF2C5E2008B0EE9 /* archer.png in Resources */,
+				0A3C94761AF2BBAB008B0EE9 /* king.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
+				0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */,
+				0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */,
+				0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */,
+				0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */,
+				0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */,
 				0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */,
-				0ADE5ED41ABCAB5A003A7F21 /* dragonslayer.jpg in Resources */,
+				0A3C948E1AF2C5ED008B0EE9 /* altking.png in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
