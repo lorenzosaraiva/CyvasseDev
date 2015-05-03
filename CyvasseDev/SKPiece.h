@@ -41,7 +41,7 @@ typedef enum SKMainClass{
     Archery = 1,
     Mage = 2,
     Foot = 3
-
+    
 } MainClass;
 
 
@@ -62,5 +62,6 @@ typedef enum SKMainClass{
 
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;
 - (void)performActionForPiece;
+- (NSString*)convertToString;
 
 @end

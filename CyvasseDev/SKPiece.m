@@ -103,6 +103,7 @@
         newPiece.fireDamage = 1;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
+        newPiece.mainClass = Mage;
         newPiece.maxHitPoints = newPiece.hitPoints;
 
     }
@@ -122,6 +123,7 @@
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
+        newPiece.mainClass = Mage;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
@@ -359,7 +361,6 @@
         /* StoneGiant */
         
         newPiece = [SKPiece spriteNodeWithImageNamed:@"mountain"];
-        newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
@@ -400,8 +401,73 @@
 }
 
 - (void)performActionForPiece{
-    
 
+}
+
+- (NSString*) convertToString {
+    
+    switch (self.pieceType) {
+        case 0:
+            return @"King";
+            break;
+        case 1:
+            return @"Soldier";
+            break;
+        case 2:
+            return @"Archer";
+            break;
+        case 3:
+            return @"Scout";
+            break;
+        case 4:
+            return @"Fire Mage";
+            break;
+        case 5:
+            return @"Light Mage";
+            break;
+        case 6:
+            return @"Royal Guard";
+            break;
+        case 7:
+            return @"Dragon";
+            break;
+        case 8:
+            return @"Dragon Slayer";
+            break;
+        case 9:
+            return @"Tower";
+            break;
+        case 10:
+            return @"Catapult";
+            break;
+        case 11:
+            return @"Sniper";
+            break;
+        case 12:
+            return @"Incendiary Archer";
+            break;
+        case 13:
+            return @"Crossbow Man";
+            break;
+        case 14:
+            return @"Mounted Archer";
+            break;
+        case 15:
+            return @"Templar";
+            break;
+        case 16:
+            return @"Shield Man";
+            break;
+        case 17:
+            return @"Saboteur";
+            break;
+        case 18:
+            return @"Stone Giant";
+            break;
+        case 19:
+            return @"Tree Giant";
+            break;
+    }
 }
 
 @end
