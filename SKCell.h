@@ -15,10 +15,11 @@
 @property int column;
 @property int cellSize;
 @property int index;
-@property (nonatomic) UIColor *cellColor;
+@property int test;
+@property SKTexture *cellTexture;
 @property (nonatomic) SKPiece *currentPiece;
 
 
-+ (instancetype) initWithColor:(UIColor*)color;
++ (instancetype) initWithColor:(int)color;
 
 @end

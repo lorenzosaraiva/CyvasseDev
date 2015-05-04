@@ -198,8 +198,7 @@
     
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
-            UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
-            SKCell *cell = [SKCell initWithColor:color];
+            SKCell *cell = [SKCell initWithColor:blackOrWhite];
             [self addChild:cell];
             [cellArray addObject:cell];
             cell.index = cells;
@@ -219,8 +218,8 @@
     for (int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
             
-            UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
-            SKCell *cell = [SKCell initWithColor:color];
+           
+            SKCell *cell = [SKCell initWithColor:blackOrWhite];
             cell.line = i + 4;
             cell.column = j + 4;
             [self addChild:cell];
@@ -239,8 +238,8 @@
     blackOrWhite = !blackOrWhite;
     for (int g = 0; g < 4; g++){
         for (int h = 0; h < 6; h++){
-            UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
-            SKCell *cell = [SKCell initWithColor:color];
+            
+            SKCell *cell = [SKCell initWithColor:blackOrWhite];
             [self addChild:cell];
             [cellArray addObject:cell];
             cell.index = cells;
@@ -258,8 +257,8 @@
     
     for (int g = 0; g < 6; g++){
         for (int h = 0; h < 4; h++){
-            UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
-            SKCell *cell = [SKCell initWithColor:color];
+           
+            SKCell *cell = [SKCell initWithColor:blackOrWhite];
             [self addChild:cell];
             [cellArray addObject:cell];
             cell.index = cells;
@@ -276,8 +275,7 @@
     
     for (int g = 0; g < 6; g++){
         for (int h = 0; h < 4; h++){
-            UIColor * color = blackOrWhite? [UIColor colorWithRed:0.4 green:0.2 blue:0 alpha:1]:[UIColor colorWithRed:0.624 green:0.588 blue:0.533 alpha:1];
-            SKCell *cell = [SKCell initWithColor:color];
+            SKCell *cell = [SKCell initWithColor:blackOrWhite];
             [self addChild:cell];
             [cellArray addObject:cell];
             cell.index = cells;
@@ -536,13 +534,17 @@
 
 -(void)selectCell:(SKCell*)cell{
     lastCell = currentCell;
-    if (currentPhase == ChoseMove || currentPhase == ChoseDirection){
-        SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
-        [lastCell runAction:unSelect];
+    if ((currentPhase == ChoseMove || currentPhase == ChoseDirection ) && lastCell != nil){
+        SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
+        [currentCell runAction:unSelect];
+        [currentCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0.0f duration:0.0f]];
     }
-    SKAction * select = [SKAction colorizeWithColor:[UIColor greenColor] colorBlendFactor:1.0f duration:0.0f];
-    [cell runAction:select];
     currentCell = cell;
+    NSString *text = [[NSString alloc]initWithFormat:@"%@ \n Hp: %d \n Damage: %d \n Movespeed: %d", currentCell.currentPiece.convertToString, currentCell.currentPiece.hitPoints, currentCell.currentPiece.attackDamage, currentCell.currentPiece.moveSpeed];
+    if(!currentCell.currentPiece.player)
+        detailsLabel.text = text;
+    else
+        detailsLabel2.text = text;
     if (cell.currentPiece != nil){
         if (currentPhase == ChoseMove || currentPhase == ChoseDirection)
             [self highlightOptionsOfCell:cell];
@@ -558,7 +560,7 @@
 -(BOOL)checkPossibleAttacksOfPlayer:(int)player{
     SKCell *tempCell;
     
-    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
     [lastCell runAction:unSelect];
     hasAttacker = false;
     [possibleCellsArray removeAllObjects];
@@ -594,7 +596,7 @@
     
     if (!foundTarget)
         return;
-    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
     [lastCell runAction:unSelect];
     [self unHighlightAttackersCells];
     [self unHighlightCells];
@@ -649,7 +651,7 @@
     [self labelTextForTurnPhase];
     }
     
-    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
     [lastCell runAction:unSelect];
     
 }
@@ -659,7 +661,7 @@
 
 -(void)checkAttackersOnCell:(SKCell*)targetCell{
     SKCell *tempCell;
-    SKAction * unSelect = [SKAction colorizeWithColor:lastCell.cellColor colorBlendFactor:1.0f duration:0.0f];
+    SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
     [lastCell runAction:unSelect];
     [possibleCellsArray removeAllObjects];
     for (int i = 0; i < possibleAttackers.count; i++){
@@ -668,7 +670,7 @@
         if ([possibleCellsArray containsObject:targetCell])
             [self damageFromCell:tempCell toCell:targetCell];
         }
-        [targetCell runAction:[SKAction colorizeWithColor:targetCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [targetCell runAction:[SKAction setTexture:targetCell.cellTexture]];
         [self unHighlightAttackersCells];
         [self unHighlightAllCells];
     }
@@ -768,7 +770,7 @@
                 [currentCell removeAllChildren];
                 [destinyCell addChild:destinyCell.currentPiece];
                 currentCell = destinyCell;
-                [self unHighlightCells];
+                [self unHighlightAllCells];
                 [self selectCell:destinyCell];
                 moveCounter++;
                 if (moveCounter >= piece.moveSpeed){
@@ -882,7 +884,7 @@
             SKCell * tempCell;
             for (int i = 0; i < possibleCellsArray.count; i++){
                 tempCell = possibleCellsArray[i];
-                SKAction *burnDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                SKAction *burnDown = [SKAction setTexture:tempCell.cellTexture];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
                 if (tempCell.currentPiece != nil && tempCell.currentPiece.player != actionCell.currentPiece.player){
                     tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
@@ -937,7 +939,7 @@
             SKCell * tempCell;
             for (int i = 0; i < possibleCellsArray.count; i++){
                 tempCell = possibleCellsArray[i];
-                SKAction *burnDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                SKAction *burnDown = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0 duration:0.2f];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
                 if (tempCell.currentPiece != nil){
                     int temp = tempCell.currentPiece.hitPoints;
@@ -991,7 +993,7 @@
             if ([tempCell containsPoint:positionInScene]){
                 tempCell.currentPiece.hitPoints -= 10;
                 SKAction *lightUp = [SKAction colorizeWithColor:[UIColor whiteColor] colorBlendFactor:1 duration:0.2f];
-                SKAction *lightDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                SKAction *lightDown = [SKAction setTexture:tempCell.cellTexture];
                 [tempCell runAction:lightUp completion:^{[tempCell runAction:lightDown];}];
                 NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Light Mage has nuked  %@ with 10 damage. ",tempCell.currentPiece.convertToString];
                 
@@ -1016,7 +1018,7 @@
             tempCell = possibleCellsArray[i];
             if ([tempCell containsPoint:positionInScene]){
                 SKAction *healUp = [SKAction colorizeWithColor:[UIColor yellowColor] colorBlendFactor:1 duration:0.4f];
-                SKAction *healDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                SKAction *healDown = [SKAction setTexture:tempCell.cellTexture];
                 [tempCell runAction:healUp completion:^{[tempCell runAction:healDown];}];
                 tempCell.currentPiece.hitPoints += 5;
                 NSString *text = [[NSString alloc]initWithFormat:@"The Royal Guard has healed %@ with 5 hitpoints",tempCell.currentPiece.convertToString];
@@ -1038,7 +1040,7 @@
             tempCell = possibleCellsArray[i];
             if ([tempCell containsPoint:positionInScene]){
                 SKAction *burnUp = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1 duration:0.4f];
-                SKAction *burnDown = [SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1 duration:0.2f];
+                SKAction *burnDown = [SKAction setTexture:tempCell.cellTexture];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
                 tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
                 NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Dragon has burned %@ with 5 fire damage. ",tempCell.currentPiece.convertToString ];
@@ -1070,14 +1072,14 @@
 
 
 -(void)highlightOptionsOfCell:(SKCell*)cell{
-    
+    SKTexture *blue = [SKTexture textureWithImage:[UIImage imageNamed:@"blue.png"]];
     SKCell *tempCell;
     NSLog(@"Index da celula principal : %d", cell.index);
     if (cell.column != 0){
         tempCell = [self cellForLine:cell.line andColumn:cell.column - 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil && (tempCell.line == cell.line)){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
@@ -1088,7 +1090,7 @@
         tempCell = [self cellForLine:cell.line andColumn:cell.column + 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil && (tempCell.line == cell.line)){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
                 
             }
@@ -1098,7 +1100,7 @@
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
@@ -1107,7 +1109,7 @@
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column + 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil ){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
@@ -1116,7 +1118,7 @@
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column - 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil ){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
@@ -1125,7 +1127,7 @@
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column + 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil ){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 
                 [possibleCellsArray addObject:tempCell];
             }
@@ -1135,7 +1137,7 @@
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
@@ -1144,13 +1146,13 @@
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column - 1];
         if (tempCell != nil)
             if (tempCell.currentPiece == nil  ){
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     }
     
     if (possibleCellsArray.count == 0){
-        SKAction * unSelect = [SKAction colorizeWithColor:cell.cellColor colorBlendFactor:1.0f duration:0.0f];
+        SKAction * unSelect = [SKAction setTexture:cell.cellTexture];
         [cell runAction:unSelect];
         
     }
@@ -1158,12 +1160,13 @@
 
 -(void)highlightSurroundingsOfCell:(SKCell*)cell{
     
+    SKTexture *blue = [SKTexture textureWithImage:[UIImage imageNamed:@"blue.png"]];
     SKCell *tempCell;
     NSLog(@"Index da celula principal : %d", cell.index);
     if (cell.column != 0){
         tempCell = [self cellForLine:cell.line andColumn:cell.column - 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
     }
     
@@ -1172,14 +1175,14 @@
     if (cell.column < 16){
         tempCell = [self cellForLine:cell.line andColumn:cell.column + 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
             }
     
     if (cell.line != 15 ){
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
         
     }
@@ -1187,21 +1190,21 @@
     if (cell.column != 16 && cell.line != 15 ){
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column + 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
     }
     
     if (cell.column > 0 && cell.line != 15 ){
         tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column - 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
     }
     
     if (cell.line > 0 && cell.column != 15 ){
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column + 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
         
     }
@@ -1209,7 +1212,7 @@
     if (cell.line > 0 ){
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
         
     }
@@ -1217,12 +1220,12 @@
     if (cell.line > 0 && cell.column > 0 ){
         tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column - 1];
         if (tempCell != nil)
-                [tempCell runAction:[SKAction colorizeWithColor:[UIColor blueColor] colorBlendFactor:1.0f duration:0.0f]];
+                [tempCell runAction:[SKAction setTexture:blue]];
                 [possibleCellsArray addObject:tempCell];
     }
     
     if (possibleCellsArray.count == 0){
-        SKAction * unSelect = [SKAction colorizeWithColor:cell.cellColor colorBlendFactor:1.0f duration:0.0f];
+        SKAction * unSelect = [SKAction setTexture:cell.cellTexture];
         [cell runAction:unSelect];
         
     }
@@ -1660,7 +1663,8 @@
     SKCell *tempCell;
     for (int i = 0; i < possibleCellsArray.count; i++){
         tempCell = [possibleCellsArray objectAtIndex:i];
-        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:0 duration:0]];
+        [tempCell runAction:[SKAction setTexture:tempCell.cellTexture]];
     }
     [possibleCellsArray removeAllObjects];
 }
@@ -1669,7 +1673,8 @@
     SKCell *tempCell;
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
-        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:0 duration:0]];
+        [tempCell runAction:[SKAction setTexture:tempCell.cellTexture]];
     }
 }
 
@@ -1677,7 +1682,8 @@
     SKCell *tempCell;
     for (int i = 0; i < possibleActionCells.count; i++){
         tempCell = [possibleActionCells objectAtIndex:i];
-        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:0 duration:0]];
+        [tempCell runAction:[SKAction setTexture:tempCell.cellTexture]];
     }
     [possibleActionCells removeAllObjects];
 }
@@ -1686,7 +1692,8 @@
     SKCell *tempCell;
     for (int i = 0; i < possibleAttackers.count; i++){
         tempCell = [possibleAttackers objectAtIndex:i];
-        [tempCell runAction:[SKAction colorizeWithColor:tempCell.cellColor colorBlendFactor:1.0f duration:0.0f]];
+        [tempCell runAction:[SKAction colorizeWithColor:[UIColor magentaColor] colorBlendFactor:0 duration:0]];
+        [tempCell runAction:[SKAction setTexture:tempCell.cellTexture]];
     }
     [possibleAttackers removeAllObjects];
 }
@@ -1870,6 +1877,7 @@
     }
     if (newPiece != nil){
         cell.currentPiece = newPiece;
+        cell.currentPiece.zPosition = 0.1f;
         [cell addChild:newPiece];
     }
 }

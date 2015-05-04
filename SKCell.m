@@ -11,12 +11,18 @@
 
 @implementation SKCell
 
-+ (instancetype) initWithColor:(UIColor*)color
++ (instancetype) initWithColor:(int)color
 {
     
-    SKCell * cell;
-    cell = [SKCell spriteNodeWithColor:color size:CGSizeMake(40, 40)];
-    cell.cellColor = color;
+    SKCell * cell = [[SKCell alloc]init];
+    SKTexture *texture;
+    if (color)
+        texture = [SKTexture textureWithImage:[UIImage imageNamed:@"erable.jpg"]];
+    else
+        texture = [SKTexture textureWithImage:[UIImage imageNamed:@"walnut.jpg"]];
+    cell = [SKCell spriteNodeWithTexture:texture size:CGSizeMake(40, 40)];
+    cell.cellTexture = texture;
+    cell.test = 10;
     cell.currentPiece = nil;
     return cell;
 }
