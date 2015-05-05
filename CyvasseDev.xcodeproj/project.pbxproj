@@ -11,7 +11,6 @@
 		0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946A1AF2BBAB008B0EE9 /* dragon.png */; };
 		0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946C1AF2BBAB008B0EE9 /* firemage.png */; };
 		0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946D1AF2BBAB008B0EE9 /* horse.png */; };
-		0A3C94761AF2BBAB008B0EE9 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946E1AF2BBAB008B0EE9 /* king.png */; };
 		0A3C94781AF2BBAB008B0EE9 /* royalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94701AF2BBAB008B0EE9 /* royalguard.png */; };
 		0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94791AF2BCB8008B0EE9 /* lightmage.png */; };
 		0A3C947C1AF2C000008B0EE9 /* dragonslayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */; };
@@ -35,6 +34,7 @@
 		0A3C94AA1AF9033A008B0EE9 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A91AF9033A008B0EE9 /* red.png */; };
 		0A3C94AC1AF90BFA008B0EE9 /* altpawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94AB1AF90BFA008B0EE9 /* altpawn.png */; };
 		0A3C94AE1AF90D10008B0EE9 /* altcatapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94AD1AF90D10008B0EE9 /* altcatapult.png */; };
+		0A3C94B01AF92ED4008B0EE9 /* king.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94AF1AF92ED4008B0EE9 /* king.png */; };
 		0A91C9F81AAF32F700D7B54D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9F71AAF32F700D7B54D /* main.m */; };
 		0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */; };
 		0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FD1AAF32F700D7B54D /* GameScene.m */; };
@@ -67,7 +67,6 @@
 		0A3C946A1AF2BBAB008B0EE9 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
 		0A3C946C1AF2BBAB008B0EE9 /* firemage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firemage.png; sourceTree = "<group>"; };
 		0A3C946D1AF2BBAB008B0EE9 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
-		0A3C946E1AF2BBAB008B0EE9 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
 		0A3C94701AF2BBAB008B0EE9 /* royalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = royalguard.png; sourceTree = "<group>"; };
 		0A3C94791AF2BCB8008B0EE9 /* lightmage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightmage.png; sourceTree = "<group>"; };
 		0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragonslayer.png; sourceTree = "<group>"; };
@@ -91,7 +90,8 @@
 		0A3C94A91AF9033A008B0EE9 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		0A3C94AB1AF90BFA008B0EE9 /* altpawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altpawn.png; sourceTree = "<group>"; };
 		0A3C94AD1AF90D10008B0EE9 /* altcatapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altcatapult.png; sourceTree = "<group>"; };
-		0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyvasseDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A3C94AF1AF92ED4008B0EE9 /* king.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = king.png; sourceTree = "<group>"; };
+		0A91C9F21AAF32F700D7B54D /* GigasBellum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigasBellum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A91C9F61AAF32F700D7B54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A91C9F71AAF32F700D7B54D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A91C9F91AAF32F700D7B54D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 				0A3C946C1AF2BBAB008B0EE9 /* firemage.png */,
 				0A3C946D1AF2BBAB008B0EE9 /* horse.png */,
 				0A3C947B1AF2C000008B0EE9 /* dragonslayer.png */,
+				0A3C94AF1AF92ED4008B0EE9 /* king.png */,
 				0A3C94811AF2C5E2008B0EE9 /* archer.png */,
-				0A3C946E1AF2BBAB008B0EE9 /* king.png */,
 				0A3C94791AF2BCB8008B0EE9 /* lightmage.png */,
 				0A3C94701AF2BBAB008B0EE9 /* royalguard.png */,
 				0ADE5EC51ABCA4B5003A7F21 /* pawn.png */,
@@ -204,7 +204,7 @@
 		0A91C9F31AAF32F700D7B54D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */,
+				0A91C9F21AAF32F700D7B54D /* GigasBellum.app */,
 				0A91CA101AAF32F800D7B54D /* CyvasseDevTests.xctest */,
 			);
 			name = Products;
@@ -297,7 +297,7 @@
 			);
 			name = CyvasseDev;
 			productName = CyvasseDev;
-			productReference = 0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */;
+			productReference = 0A91C9F21AAF32F700D7B54D /* GigasBellum.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0A91CA0F1AAF32F800D7B54D /* CyvasseDevTests */ = {
@@ -382,9 +382,9 @@
 				0A3C949F1AF7F8DA008B0EE9 /* erable.jpg in Resources */,
 				0A3C94821AF2C5E2008B0EE9 /* archer.png in Resources */,
 				0A3C94AA1AF9033A008B0EE9 /* red.png in Resources */,
-				0A3C94761AF2BBAB008B0EE9 /* king.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
 				0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */,
+				0A3C94B01AF92ED4008B0EE9 /* king.png in Resources */,
 				0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */,
 				0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */,
 				0A3C94A81AF902BB008B0EE9 /* redwood.jpg in Resources */,
@@ -544,7 +544,7 @@
 				INFOPLIST_FILE = CyvasseDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GigasBellum;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -556,7 +556,7 @@
 				INFOPLIST_FILE = CyvasseDev/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GigasBellum;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

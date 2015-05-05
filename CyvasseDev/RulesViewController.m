@@ -24,7 +24,7 @@
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*0.05, self.view.frame.size.width*0.05, self.view.frame.size.width*0.9, self.view.frame.size.height*0.9)];
     scrollView.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
     scrollView.layer.cornerRadius = 10;
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height*3.1);
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height*3.3);
     [self.view addSubview:scrollView];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(scrollView.frame.size.width*0.5 - scrollView.frame.size.width*0.25, self.view.frame.size.height*0.1, scrollView.frame.size.width*0.5, self.view.frame.size.height*0.1)];
@@ -64,7 +64,7 @@
     
     float initialY = actionTitle.frame.origin.y + actionTitle.frame.size.height/2;
     
-    for (int i = 0; i<8; i++){
+    for (int i = 0; i<9; i++){
         
     UIView *actionView = [[UIView alloc]initWithFrame:CGRectMake(general.frame.origin.x, initialY + (i*scrollView.frame.size.height * 0.2 + scrollView.frame.size.height *0.1) , general.frame.size.width, scrollView.frame.size.height *0.2)];
     [scrollView addSubview:actionView];
@@ -83,33 +83,37 @@
         switch (i) {
             case 0:
                 actionText.text = @" Dragon - The strongest piece. Besides his fierce claws, it has Firebreathing as action. In this action, you chose one target up to 2 units of distance, and the Dragon will deal 7 fire damage. It's important you remember some pieces take extra fire damage!";
-                actionImage.image =[UIImage imageNamed:@"Dragon.png"];
+                actionImage.image =[UIImage imageNamed:@"dragon.png"];
                 break;
             case 1:
                 actionText.text = @"Fire Mage - It has very low amount of hitpoints and is slow. Its main action is to summon a wall of fire around him, burning every enemy. The secondary action is to awaken the Stone Giant.";
-                actionImage.image =[UIImage imageNamed:@"Firemage.png"];
+                actionImage.image =[UIImage imageNamed:@"firemage.png"];
                 break;
             case 2:
                 actionText.text = @"Light Mage - Like the other mage, it has low amount of hitpoints and movespeed. Its main action is to send a light beam on a single unit up to 2 squares away. The secondary action is to awaken the Tree Giant ";
-                actionImage.image =[UIImage imageNamed:@"Lightmage.png"];
+                actionImage.image =[UIImage imageNamed:@"lightmage.png"];
                 break;
             case 3:
                 actionText.text = @"Royal Guard - This piece is the sworn protector of the King. It has a big amount of hitpoints and it's imune to fire and arrows. Its main action is to heal an adjecent friendly unit by 5 hitpoints.";
-                actionImage.image =[UIImage imageNamed:@"Royalguard"];
+                actionImage.image =[UIImage imageNamed:@"royalguard"];
                 break;
             case 4:
                 actionText.text = @"Saboteur - Even though this pawn looks the same as others, it's a saboteur. Its action is to blow himself up, and it deals 10 fire damage to everyone around him. Be careful, this is the only action that can damage allied pieces!";
-                actionImage.image =[UIImage imageNamed:@"Pawn.png"];
+                actionImage.image =[UIImage imageNamed:@"pawn"];
                 break;
             case 5:
                 actionText.text = @"King - Your main piece! He is weak, but he runs fast. Not much of a warrior king. If this piece is killed, the game is over.";
-                actionImage.image =[UIImage imageNamed:@"King.png"];
+                actionImage.image =[UIImage imageNamed:@"king.png"];
                 break;
             case 6:
+                actionText.text = @"Dragon Slayer - Your secret weapon versus the Dragon. This piece is fast, strong and fireproof. And the best part: it has an spear which can be thrown only at the Dragon, once per game, that deals great damage and makes the Dragon slow.";
+                actionImage.image =[UIImage imageNamed:@"dragonslayer.png"];
+                break;
+            case 7:
                 actionText.text = @"Tree Giant - The Tree Giant is a very versatile unit. It's strong, fast and has the action of attacking with long branches, dealing 5 damage. Just be careful because it is weak to fire!";
                 actionImage.image =[UIImage imageNamed:@"tree.png"];
                 break;
-            case 7:
+            case 8:
                 actionText.text = @"Stone Giant - This one is a bit more massive. It has a huge hitpoints amount and it's invulnerable to fire or arrows, but it's slower than the Tree Giant and it doesn't have an action.";
                 actionImage.image =[UIImage imageNamed:@"mountain.png"];
                 break;

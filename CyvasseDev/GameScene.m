@@ -56,32 +56,6 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    UITouch *touch = [touches anyObject];
-    CGPoint positionInScene = [touch locationInNode:self];
-    
-    switch (currentPhase) {
-        case ChoseMove:
-            [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
-            break;
-        case ChoseDirection:
-            [self movePiece:currentCell.currentPiece ToCell:positionInScene];
-            break;
-        case ChoseAttacker:
-            [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
-            break;
-        case ChoseAttackTarget:
-            [self attackCell:positionInScene];
-            break;
-        case ChoseTowerTarget:
-            [self attackCellWithTower:positionInScene];
-            break;
-        case ChoseAction:
-            [self performActionOfCell:positionInScene];
-            break;
-        case ChoseActionTarget:
-            [self complexActionForCell:currentCell withTarget:positionInScene];
-            break;
-    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -160,7 +134,7 @@
     [actionLabel2 addGestureRecognizer:tapGesture2];
     
     
-    detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel.frame.origin.y + mainLabel.frame.size.height + self.frame.size.height*0.025, mainLabel.frame.size.width, 130)];
+    detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel.frame.origin.y + mainLabel.frame.size.height + self.frame.size.height*0.025, mainLabel.frame.size.width, mainLabel.frame.size.height*1.7)];
     detailsLabel.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
     detailsLabel.numberOfLines = 5;
     detailsLabel.userInteractionEnabled = YES;
@@ -172,7 +146,7 @@
     detailsLabel.font = [UIFont fontWithName:@"Superclarendon" size:15];
     detailsLabel.layer.borderWidth = 2;
     
-    detailsLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel2.frame.origin.y - self.frame.size.height*0.025 - detailsLabel.frame.size.height, mainLabel.frame.size.width, 130)];
+    detailsLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel2.frame.origin.y - self.frame.size.height*0.025 - detailsLabel.frame.size.height, mainLabel.frame.size.width, mainLabel.frame.size.height*1.7)];
     detailsLabel2.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
     detailsLabel2.numberOfLines = 5;
     detailsLabel2.userInteractionEnabled = YES;
@@ -335,6 +309,43 @@
     UISwipeGestureRecognizer *checkPiece = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showPieceInfo:)];
     checkPiece.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:checkPiece];
+    
+    UITapGestureRecognizer *mainTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(mainTap:)];
+    [self.view addGestureRecognizer:mainTap];
+    [mainTap requireGestureRecognizerToFail:checkPiece];
+
+}
+
+-(void)mainTap:(UITapGestureRecognizer*)recognizer{
+    CGPoint positionInScene = [recognizer locationInView:recognizer.view];
+    
+    positionInScene = [self convertPointFromView:positionInScene];
+    
+    switch (currentPhase) {
+        case ChoseMove:
+            [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
+            break;
+        case ChoseDirection:
+            [self movePiece:currentCell.currentPiece ToCell:positionInScene];
+            break;
+        case ChoseAttacker:
+            [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
+            break;
+        case ChoseAttackTarget:
+            [self attackCell:positionInScene];
+            break;
+        case ChoseTowerTarget:
+            [self attackCellWithTower:positionInScene];
+            break;
+        case ChoseAction:
+            [self performActionOfCell:positionInScene];
+            break;
+        case ChoseActionTarget:
+            [self complexActionForCell:currentCell withTarget:positionInScene];
+            break;
+    }
+
+
 }
 
 -(void)skipPhaseOfPlayerOne{
@@ -500,7 +511,6 @@
             [self unHighlightCells];
             [self unHighlightAllCells];
             if ([self highlightsPossibleActionCellsOfPlayer:blackPlays]){
-                NSLog(@"bug6");
                 currentPhase = ChoseAction;
                 NSLog(@"Action of skipPhase, turnPhase is %d", currentPhase);
                 [self labelTextForTurnPhase];
@@ -695,9 +705,10 @@
         [self labelTextForTurnPhase];
     }
     else{
-    currentPhase = ChoseMove;
-    blackPlays = !blackPlays;
-    [self labelTextForTurnPhase];
+        [self unHighlightAllCells];
+        currentPhase = ChoseMove;
+        blackPlays = !blackPlays;
+        [self labelTextForTurnPhase];
     }
     
     SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
@@ -794,7 +805,7 @@
     if (target.currentPiece.hitPoints <= 0){
         [target removeAllChildren];
         if (target.currentPiece.pieceType == King){
-            NSLog(@"GGWP");
+            [self restartGame];
         }
         target.currentPiece = nil;
         
@@ -846,7 +857,6 @@
                             currentPhase = ChoseTowerTarget;
                             [self labelTextForTurnPhase];
                         }else if ([self highlightsPossibleActionCellsOfPlayer:blackPlays]){
-                            NSLog(@"bug");
                             currentPhase = ChoseAction;
                             [self labelTextForTurnPhase];
                         }else{
@@ -962,7 +972,7 @@
             SKCell * tempCell;
             for (int i = 0; i < possibleCellsArray.count; i++){
                 tempCell = possibleCellsArray[i];
-                SKAction *burnDown = [SKAction setTexture:tempCell.cellTexture];
+                SKAction *burnDown = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0 duration:0.2f];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
                 if (tempCell.currentPiece != nil && tempCell.currentPiece.player != actionCell.currentPiece.player){
                     tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
@@ -1061,6 +1071,13 @@
             actionIsSimple = false;
             break;
         }
+        case DragonSlayer:
+        {
+            currentCell = actionCell;
+            [self highlightDragonAttackOptionsOfCell:actionCell withRangeMin:1 andMax:3];
+            actionIsSimple = false;
+            break;
+        }
         default:
         {
             actionIsSimple = true;
@@ -1126,15 +1143,15 @@
             tempCell = possibleCellsArray[i];
             if ([tempCell containsPoint:positionInScene]){
                 SKAction *burnUp = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1 duration:0.4f];
-                SKAction *burnDown = [SKAction setTexture:tempCell.cellTexture];
+                SKAction *burnDown = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0.0 duration:0.2f];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
-                tempCell.currentPiece.hitPoints -= 7 * tempCell.currentPiece.fireDamageMultiplier;
-                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Dragon has burned %@ with 7 fire damage. ",tempCell.currentPiece.convertToString ];
+                int damage = 7 * tempCell.currentPiece.fireDamageMultiplier;
+                tempCell.currentPiece.hitPoints -= damage;
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Dragon has burned %@ with %d fire damage. ",tempCell.currentPiece.convertToString, damage];
                
                 if (tempCell.currentPiece.hitPoints <= 0){
                     [tempCell removeAllChildren];
                     tempCell.currentPiece = nil;
-                    [text appendString:@"He's dead!"];
                 }
                 if (blackPlays)
                     detailsLabel.text = text;
@@ -1152,8 +1169,31 @@
             tempCell = possibleCellsArray[i];
             if ([tempCell containsPoint:positionInScene]){
                 tempCell.currentPiece.hitPoints -= 5 ;
-                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The TreeGiant has attacked %@ with 7 fire damage. ",tempCell.currentPiece.convertToString ];
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The TreeGiant has attacked %@ with 5 damage. ",tempCell.currentPiece.convertToString ];
                 
+                if (tempCell.currentPiece.hitPoints <= 0){
+                    [tempCell removeAllChildren];
+                    tempCell.currentPiece = nil;
+                }
+                if (blackPlays)
+                    detailsLabel.text = text;
+                else
+                    detailsLabel2.text = text;
+            }
+            
+        }
+        
+    }
+    
+    if (actionCell.currentPiece.pieceType == DragonSlayer){
+        SKCell * tempCell;
+        for (int i = 0; i < possibleCellsArray.count; i++){
+            tempCell = possibleCellsArray[i];
+            if ([tempCell containsPoint:positionInScene] && tempCell.currentPiece.pieceType == Dragon){
+                tempCell.currentPiece.hitPoints -= 10 ;
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The DragonSlayer has attacked the Dragon with his mighty spear!"];
+                tempCell.currentPiece.moveSpeed = 1;
+                actionCell.currentPiece.hasAction = false;
                 if (tempCell.currentPiece.hitPoints <= 0){
                     [tempCell removeAllChildren];
                     tempCell.currentPiece = nil;
@@ -1624,6 +1664,222 @@
     
 }
 
+-(void)highlightDragonAttackOptionsOfCell:(SKCell*)cell withRangeMin:(int)rangeMin andMax:(int)rangeMax{
+    
+    [possibleCellsArray removeAllObjects];
+    SKCell *tempCell;
+    if (rangeMin <= 1 && rangeMax >=1){
+        if (cell.column != 0){
+            tempCell = [self cellForLine:cell.line andColumn:cell.column - 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        
+        
+        
+        
+        if (cell.column < 16){
+            tempCell = [self cellForLine:cell.line andColumn:cell.column + 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        if (cell.line != 15 ){
+            tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        if (cell.column != 16 && cell.line != 15 ){
+            tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column + 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        if (cell.column > 0 && cell.line != 15 ){
+            tempCell = [self cellForLine:cell.line + 1 andColumn:cell.column - 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        
+        if (cell.line > 0 && cell.column != 15 ){
+            tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column + 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        if (cell.line > 0 ){
+            tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+        if (cell.line > 0 && cell.column > 0 ){
+            tempCell = [self cellForLine:cell.line - 1 andColumn:cell.column - 1];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+        }
+        tempCell = nil;
+    }
+    
+    
+    
+    if (rangeMin <= 2 && rangeMax >=2){
+        
+        
+        for (int i = -2; i < 3; i ++){
+            tempCell = [self cellForLine:cell.line + 2 andColumn:cell.column + i];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -2; i < 3; i ++){
+            tempCell = [self cellForLine:cell.line - 2 andColumn:cell.column + i];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -1; i < 2; i ++){
+            tempCell = [self cellForLine:cell.line + i andColumn:cell.column + 2];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -1; i < 2; i ++){
+            tempCell = [self cellForLine:cell.line + i andColumn:cell.column - 2];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+    }
+    
+    /* Range = 3 */
+    
+    if (rangeMin <= 3 && rangeMax >= 3){
+        
+        
+        for (int i = -3; i < 4; i ++){
+            tempCell = [self cellForLine:cell.line + 3 andColumn:cell.column + i];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -3; i < 4; i ++){
+            tempCell = [self cellForLine:cell.line - 3 andColumn:cell.column + i];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -2; i < 3; i ++){
+            tempCell = [self cellForLine:cell.line + i andColumn:cell.column + 3];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+        for (int i = -2; i < 3; i ++){
+            tempCell = [self cellForLine:cell.line + i andColumn:cell.column - 3];
+            if (tempCell != nil)
+                if (tempCell.currentPiece != nil && tempCell.currentPiece.pieceType == Dragon){
+                    if (tempCell.currentPiece.player != cell.currentPiece.player){
+                        [tempCell runAction:[SKAction setTexture:red]];
+                        [possibleCellsArray addObject:tempCell];
+                    }
+                }
+            tempCell = nil;
+        }
+        
+    }
+}
 
 -(void)highlightFriendlyOptionsOfCell:(SKCell*)cell{
     
@@ -1735,11 +1991,20 @@
     SKCell *tempCell;
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
+        [self unHighlightCells];
         if (tempCell.currentPiece.hasAction && tempCell.currentPiece.player != player){
             
             switch (tempCell.currentPiece.pieceType) {
                 case Dragon:
-                    [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
+                    [self highlightAttackOptionsOfCell:tempCell withRangeMin:1 andMax:2];
+                    if (possibleCellsArray.count == 0){
+                        continue;
+                    }
+                    [tempCell runAction:[SKAction setTexture:red]];
+                    [possibleActionCells addObject:tempCell];
+                    break;
+                case TreeGiant:
+                    [self highlightAttackOptionsOfCell:tempCell withRangeMin:1 andMax:2];
                     if (possibleCellsArray.count == 0){
                         continue;
                     }
@@ -1772,13 +2037,25 @@
                     [tempCell runAction:[SKAction setTexture:red]];
                     [possibleActionCells addObject:tempCell];
                     break;
+                case DragonSlayer:
+                {
+                    [self highlightDragonAttackOptionsOfCell:tempCell withRangeMin:1 andMax:3];
+                    if (possibleCellsArray.count == 0){
+                        continue;
+                    }
+                    [tempCell runAction:[SKAction setTexture:red]];
+                    [possibleActionCells addObject:tempCell];
+                    break;
+                }
                 default:
                     [tempCell runAction:[SKAction setTexture:red]];
                     [possibleActionCells addObject:tempCell];
                     break;
             }
         }
+        [self unHighlightCells];
     }
+   
     NSLog(@"Count das Action possivieis : %lu", (unsigned long)possibleActionCells.count);
     if (possibleActionCells.count == 0){
         return false;

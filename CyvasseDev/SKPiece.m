@@ -16,7 +16,7 @@
     newPiece.canAttack = true;
     
     if (type == 0){
-        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"king"]:[SKPiece spriteNodeWithImageNamed:@"altking.png"];
+        newPiece = player? [SKPiece spriteNodeWithImageNamed:@"king.png"]:[SKPiece spriteNodeWithImageNamed:@"altking.png"];
         newPiece.player = player;
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
@@ -157,7 +157,7 @@
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;;
         newPiece.fireDamageMultiplier = 0;
-        newPiece.fireDamage = 1;
+        newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
         newPiece.hasAction = true;
         newPiece.mainClass = Chivalry;
@@ -178,6 +178,7 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 1;
+        newPiece.hasAction = true;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
@@ -304,9 +305,9 @@
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 12;
-        newPiece.attackDamage = 6;
+        newPiece.attackDamage = 7;
         newPiece.rangeMin = 1;
-        newPiece.rangeMax = 2;
+        newPiece.rangeMax = 1;
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
@@ -380,7 +381,7 @@
         
         /* TreeGiant */
         
-        newPiece = [SKPiece spriteNodeWithImageNamed:@"tree"];
+        newPiece = [SKPiece spriteNodeWithImageNamed:@"tree.png"];
         newPiece.pieceType = type;
         newPiece.moveSpeed = 2;
         newPiece.size = CGSizeMake(40, 40);
