@@ -117,7 +117,7 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 2;
-        newPiece.rangeMin = 2;
+        newPiece.rangeMin = 1;
         newPiece.rangeMax = 2;
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
@@ -364,11 +364,11 @@
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
-        newPiece.hitPoints = 5;
-        newPiece.attackDamage = 5;
+        newPiece.hitPoints = 25;
+        newPiece.attackDamage = 10;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
         newPiece.hasAction = true;
@@ -382,13 +382,13 @@
         
         newPiece = [SKPiece spriteNodeWithImageNamed:@"tree"];
         newPiece.pieceType = type;
-        newPiece.moveSpeed = 1;
+        newPiece.moveSpeed = 2;
         newPiece.size = CGSizeMake(40, 40);
-        newPiece.hitPoints = 5;
-        newPiece.attackDamage = 5;
+        newPiece.hitPoints = 20;
+        newPiece.attackDamage = 8;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
-        newPiece.fireDamageMultiplier = 1;
+        newPiece.fireDamageMultiplier = 1.5;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
         newPiece.hasAction = true;

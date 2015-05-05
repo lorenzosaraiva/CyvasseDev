@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A21A3AF1AF8374300FE6468 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3AE1AF8374300FE6468 /* red.png */; };
+		0A21A3B11AF84DBE00FE6468 /* table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B01AF84DBE00FE6468 /* table.jpg */; };
+		0A21A3B51AF8507300FE6468 /* wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B41AF8507300FE6468 /* wood.jpg */; };
+		0A21A3B91AF851E400FE6468 /* redwood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B81AF851E400FE6468 /* redwood.jpg */; };
+		0A21A3BC1AF859C300FE6468 /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A21A3BB1AF859C300FE6468 /* RulesViewController.m */; };
 		0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946A1AF2BBAB008B0EE9 /* dragon.png */; };
 		0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946C1AF2BBAB008B0EE9 /* firemage.png */; };
 		0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946D1AF2BBAB008B0EE9 /* horse.png */; };
@@ -59,6 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A21A3AE1AF8374300FE6468 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../../../Desktop/red.png; sourceTree = "<group>"; };
+		0A21A3B01AF84DBE00FE6468 /* table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = table.jpg; path = ../../../Desktop/table.jpg; sourceTree = "<group>"; };
+		0A21A3B41AF8507300FE6468 /* wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wood.jpg; path = ../../../Desktop/wood.jpg; sourceTree = "<group>"; };
+		0A21A3B81AF851E400FE6468 /* redwood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = redwood.jpg; path = ../../../Desktop/redwood.jpg; sourceTree = "<group>"; };
+		0A21A3BA1AF859C300FE6468 /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
+		0A21A3BB1AF859C300FE6468 /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
 		0A3C946A1AF2BBAB008B0EE9 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
 		0A3C946C1AF2BBAB008B0EE9 /* firemage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firemage.png; sourceTree = "<group>"; };
 		0A3C946D1AF2BBAB008B0EE9 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
@@ -177,8 +188,12 @@
 			children = (
 				0A3C94A51AF7FD3C008B0EE9 /* blue.png */,
 				0A3C94A31AF7FC1C008B0EE9 /* white.png */,
+				0A21A3B01AF84DBE00FE6468 /* table.jpg */,
+				0A21A3B81AF851E400FE6468 /* redwood.jpg */,
+				0A21A3AE1AF8374300FE6468 /* red.png */,
 				0A3C94A01AF7FA5D008B0EE9 /* walnut.jpg */,
 				0A3C949E1AF7F8DA008B0EE9 /* erable.jpg */,
+				0A21A3B41AF8507300FE6468 /* wood.jpg */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -211,6 +226,8 @@
 				0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */,
 				0A91C9FC1AAF32F700D7B54D /* GameScene.h */,
 				0A91C9FD1AAF32F700D7B54D /* GameScene.m */,
+				0A21A3BA1AF859C300FE6468 /* RulesViewController.h */,
+				0A21A3BB1AF859C300FE6468 /* RulesViewController.m */,
 				0A91C9FF1AAF32F700D7B54D /* GameScene.sks */,
 				0A91CA011AAF32F700D7B54D /* GameViewController.h */,
 				0A91CA021AAF32F700D7B54D /* GameViewController.m */,
@@ -353,6 +370,7 @@
 				0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */,
 				0A3C949B1AF2D1D5008B0EE9 /* tree.png in Resources */,
 				0A3C94A61AF7FD3C008B0EE9 /* blue.png in Resources */,
+				0A21A3B51AF8507300FE6468 /* wood.jpg in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
 				0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */,
 				0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */,
@@ -374,11 +392,14 @@
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
 				0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */,
 				0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */,
+				0A21A3B91AF851E400FE6468 /* redwood.jpg in Resources */,
 				0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */,
+				0A21A3B11AF84DBE00FE6468 /* table.jpg in Resources */,
 				0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */,
 				0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */,
 				0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */,
 				0A3C948E1AF2C5ED008B0EE9 /* altking.png in Resources */,
+				0A21A3AF1AF8374300FE6468 /* red.png in Resources */,
 				0A3C94A11AF7FA5D008B0EE9 /* walnut.jpg in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);
@@ -402,6 +423,7 @@
 				0A91CA031AAF32F700D7B54D /* GameViewController.m in Sources */,
 				0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */,
 				0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */,
+				0A21A3BC1AF859C300FE6468 /* RulesViewController.m in Sources */,
 				0A91CA261AAF349000D7B54D /* SKCell.m in Sources */,
 				0A91C9F81AAF32F700D7B54D /* main.m in Sources */,
 			);
@@ -531,6 +553,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -542,6 +565,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
