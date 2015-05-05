@@ -22,7 +22,7 @@
         newPiece.moveSpeed = 2;
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 8;
-        newPiece.attackDamage = 3;
+        newPiece.attackDamage = 2;
         newPiece.rangeMin = 1;
         newPiece.rangeMax = 1;
         newPiece.fireDamageMultiplier = 1;
@@ -206,10 +206,10 @@
         newPiece.pieceType = type;
         newPiece.moveSpeed = 1;
         newPiece.size = CGSizeMake(40, 40);
-        newPiece.hitPoints = 6;
+        newPiece.hitPoints = 3;
         newPiece.attackDamage = 10;
         newPiece.rangeMin = 1;
-        newPiece.rangeMax = 1;
+        newPiece.rangeMax = 2;
         newPiece.fireDamageMultiplier = 2;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
@@ -284,8 +284,8 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 10;
         newPiece.attackDamage = 5;
-        newPiece.rangeMin = 1;
-        newPiece.rangeMax = 2;
+        newPiece.rangeMin = 2;
+        newPiece.rangeMax = 3;
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
@@ -306,7 +306,7 @@
         newPiece.hitPoints = 12;
         newPiece.attackDamage = 6;
         newPiece.rangeMin = 1;
-        newPiece.rangeMax = 1;
+        newPiece.rangeMax = 2;
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.mainClass = Chivalry;
@@ -331,7 +331,7 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
-        newPiece.hasAction = true;
+        newPiece.hasAction = false;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
@@ -371,7 +371,7 @@
         newPiece.fireDamageMultiplier = 0;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
-        newPiece.hasAction = true;
+        newPiece.hasAction = false;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
         

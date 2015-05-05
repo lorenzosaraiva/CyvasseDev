@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A21A3AF1AF8374300FE6468 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3AE1AF8374300FE6468 /* red.png */; };
-		0A21A3B11AF84DBE00FE6468 /* table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B01AF84DBE00FE6468 /* table.jpg */; };
-		0A21A3B51AF8507300FE6468 /* wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B41AF8507300FE6468 /* wood.jpg */; };
-		0A21A3B91AF851E400FE6468 /* redwood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A21A3B81AF851E400FE6468 /* redwood.jpg */; };
 		0A21A3BC1AF859C300FE6468 /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A21A3BB1AF859C300FE6468 /* RulesViewController.m */; };
 		0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946A1AF2BBAB008B0EE9 /* dragon.png */; };
 		0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C946C1AF2BBAB008B0EE9 /* firemage.png */; };
@@ -25,11 +21,9 @@
 		0A3C948D1AF2C5ED008B0EE9 /* althorse.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94851AF2C5ED008B0EE9 /* althorse.png */; };
 		0A3C948E1AF2C5ED008B0EE9 /* altking.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94861AF2C5ED008B0EE9 /* altking.png */; };
 		0A3C948F1AF2C5ED008B0EE9 /* altlightmage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */; };
-		0A3C94901AF2C5ED008B0EE9 /* altpawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94881AF2C5ED008B0EE9 /* altpawn.png */; };
 		0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */; };
 		0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C948A1AF2C5ED008B0EE9 /* alttower.png */; };
 		0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94931AF2C745008B0EE9 /* altfiremage.png */; };
-		0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */; };
 		0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */; };
 		0A3C949B1AF2D1D5008B0EE9 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C949A1AF2D1D5008B0EE9 /* tree.png */; };
 		0A3C949D1AF2D1DB008B0EE9 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C949C1AF2D1DB008B0EE9 /* mountain.png */; };
@@ -37,6 +31,10 @@
 		0A3C94A11AF7FA5D008B0EE9 /* walnut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A01AF7FA5D008B0EE9 /* walnut.jpg */; };
 		0A3C94A41AF7FC1C008B0EE9 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A31AF7FC1C008B0EE9 /* white.png */; };
 		0A3C94A61AF7FD3C008B0EE9 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A51AF7FD3C008B0EE9 /* blue.png */; };
+		0A3C94A81AF902BB008B0EE9 /* redwood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A71AF902BB008B0EE9 /* redwood.jpg */; };
+		0A3C94AA1AF9033A008B0EE9 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94A91AF9033A008B0EE9 /* red.png */; };
+		0A3C94AC1AF90BFA008B0EE9 /* altpawn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94AB1AF90BFA008B0EE9 /* altpawn.png */; };
+		0A3C94AE1AF90D10008B0EE9 /* altcatapult.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3C94AD1AF90D10008B0EE9 /* altcatapult.png */; };
 		0A91C9F81AAF32F700D7B54D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9F71AAF32F700D7B54D /* main.m */; };
 		0A91C9FB1AAF32F700D7B54D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FA1AAF32F700D7B54D /* AppDelegate.m */; };
 		0A91C9FE1AAF32F700D7B54D /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A91C9FD1AAF32F700D7B54D /* GameScene.m */; };
@@ -64,10 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A21A3AE1AF8374300FE6468 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red.png; path = ../../../Desktop/red.png; sourceTree = "<group>"; };
-		0A21A3B01AF84DBE00FE6468 /* table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = table.jpg; path = ../../../Desktop/table.jpg; sourceTree = "<group>"; };
-		0A21A3B41AF8507300FE6468 /* wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wood.jpg; path = ../../../Desktop/wood.jpg; sourceTree = "<group>"; };
-		0A21A3B81AF851E400FE6468 /* redwood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = redwood.jpg; path = ../../../Desktop/redwood.jpg; sourceTree = "<group>"; };
 		0A21A3BA1AF859C300FE6468 /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		0A21A3BB1AF859C300FE6468 /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
 		0A3C946A1AF2BBAB008B0EE9 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
@@ -83,11 +77,9 @@
 		0A3C94851AF2C5ED008B0EE9 /* althorse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = althorse.png; sourceTree = "<group>"; };
 		0A3C94861AF2C5ED008B0EE9 /* altking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altking.png; sourceTree = "<group>"; };
 		0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altlightmage.png; sourceTree = "<group>"; };
-		0A3C94881AF2C5ED008B0EE9 /* altpawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altpawn.png; sourceTree = "<group>"; };
 		0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altroyalguard.png; sourceTree = "<group>"; };
 		0A3C948A1AF2C5ED008B0EE9 /* alttower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alttower.png; sourceTree = "<group>"; };
 		0A3C94931AF2C745008B0EE9 /* altfiremage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altfiremage.png; sourceTree = "<group>"; };
-		0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altcatapult.png; sourceTree = "<group>"; };
 		0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altdragonslayer.png; sourceTree = "<group>"; };
 		0A3C949A1AF2D1D5008B0EE9 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		0A3C949C1AF2D1DB008B0EE9 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain.png; sourceTree = "<group>"; };
@@ -95,6 +87,10 @@
 		0A3C94A01AF7FA5D008B0EE9 /* walnut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = walnut.jpg; sourceTree = "<group>"; };
 		0A3C94A31AF7FC1C008B0EE9 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		0A3C94A51AF7FD3C008B0EE9 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		0A3C94A71AF902BB008B0EE9 /* redwood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = redwood.jpg; sourceTree = "<group>"; };
+		0A3C94A91AF9033A008B0EE9 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		0A3C94AB1AF90BFA008B0EE9 /* altpawn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altpawn.png; sourceTree = "<group>"; };
+		0A3C94AD1AF90D10008B0EE9 /* altcatapult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = altcatapult.png; sourceTree = "<group>"; };
 		0A91C9F21AAF32F700D7B54D /* CyvasseDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyvasseDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A91C9F61AAF32F700D7B54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A91C9F71AAF32F700D7B54D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,14 +156,14 @@
 			isa = PBXGroup;
 			children = (
 				0A3C94831AF2C5ED008B0EE9 /* altarcher.png */,
+				0A3C94AD1AF90D10008B0EE9 /* altcatapult.png */,
 				0A3C94931AF2C745008B0EE9 /* altfiremage.png */,
 				0A3C94841AF2C5ED008B0EE9 /* altdragon.png */,
 				0A3C94851AF2C5ED008B0EE9 /* althorse.png */,
 				0A3C94861AF2C5ED008B0EE9 /* altking.png */,
 				0A3C94871AF2C5ED008B0EE9 /* altlightmage.png */,
+				0A3C94AB1AF90BFA008B0EE9 /* altpawn.png */,
 				0A3C94971AF2C950008B0EE9 /* altdragonslayer.png */,
-				0A3C94881AF2C5ED008B0EE9 /* altpawn.png */,
-				0A3C94951AF2C8B5008B0EE9 /* altcatapult.png */,
 				0A3C94891AF2C5ED008B0EE9 /* altroyalguard.png */,
 				0A3C948A1AF2C5ED008B0EE9 /* alttower.png */,
 			);
@@ -188,12 +184,10 @@
 			children = (
 				0A3C94A51AF7FD3C008B0EE9 /* blue.png */,
 				0A3C94A31AF7FC1C008B0EE9 /* white.png */,
-				0A21A3B01AF84DBE00FE6468 /* table.jpg */,
-				0A21A3B81AF851E400FE6468 /* redwood.jpg */,
-				0A21A3AE1AF8374300FE6468 /* red.png */,
+				0A3C94A91AF9033A008B0EE9 /* red.png */,
+				0A3C94A71AF902BB008B0EE9 /* redwood.jpg */,
 				0A3C94A01AF7FA5D008B0EE9 /* walnut.jpg */,
 				0A3C949E1AF7F8DA008B0EE9 /* erable.jpg */,
-				0A21A3B41AF8507300FE6468 /* wood.jpg */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -366,17 +360,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A3C94901AF2C5ED008B0EE9 /* altpawn.png in Resources */,
 				0A3C94751AF2BBAB008B0EE9 /* horse.png in Resources */,
 				0A3C949B1AF2D1D5008B0EE9 /* tree.png in Resources */,
 				0A3C94A61AF7FD3C008B0EE9 /* blue.png in Resources */,
-				0A21A3B51AF8507300FE6468 /* wood.jpg in Resources */,
 				0A91CA0B1AAF32F700D7B54D /* LaunchScreen.xib in Resources */,
 				0A3C94921AF2C5ED008B0EE9 /* alttower.png in Resources */,
+				0A3C94AE1AF90D10008B0EE9 /* altcatapult.png in Resources */,
 				0A3C94911AF2C5ED008B0EE9 /* altroyalguard.png in Resources */,
 				0A3C94A41AF7FC1C008B0EE9 /* white.png in Resources */,
+				0A3C94AC1AF90BFA008B0EE9 /* altpawn.png in Resources */,
 				0ADE5EE01ABCB81D003A7F21 /* tower.png in Resources */,
-				0A3C94961AF2C8B5008B0EE9 /* altcatapult.png in Resources */,
 				0A91CA081AAF32F700D7B54D /* Images.xcassets in Resources */,
 				0A3C948C1AF2C5ED008B0EE9 /* altdragon.png in Resources */,
 				0A3C949D1AF2D1DB008B0EE9 /* mountain.png in Resources */,
@@ -388,18 +381,17 @@
 				0A3C948F1AF2C5ED008B0EE9 /* altlightmage.png in Resources */,
 				0A3C949F1AF7F8DA008B0EE9 /* erable.jpg in Resources */,
 				0A3C94821AF2C5E2008B0EE9 /* archer.png in Resources */,
+				0A3C94AA1AF9033A008B0EE9 /* red.png in Resources */,
 				0A3C94761AF2BBAB008B0EE9 /* king.png in Resources */,
 				0A91CA001AAF32F700D7B54D /* GameScene.sks in Resources */,
 				0A3C947A1AF2BCB8008B0EE9 /* lightmage.png in Resources */,
 				0A3C94741AF2BBAB008B0EE9 /* firemage.png in Resources */,
-				0A21A3B91AF851E400FE6468 /* redwood.jpg in Resources */,
 				0A3C94941AF2C745008B0EE9 /* altfiremage.png in Resources */,
-				0A21A3B11AF84DBE00FE6468 /* table.jpg in Resources */,
+				0A3C94A81AF902BB008B0EE9 /* redwood.jpg in Resources */,
 				0A3C94721AF2BBAB008B0EE9 /* dragon.png in Resources */,
 				0A3C94981AF2C950008B0EE9 /* altdragonslayer.png in Resources */,
 				0AE093D51AC0D2CA003EBEA2 /* catapult.png in Resources */,
 				0A3C948E1AF2C5ED008B0EE9 /* altking.png in Resources */,
-				0A21A3AF1AF8374300FE6468 /* red.png in Resources */,
 				0A3C94A11AF7FA5D008B0EE9 /* walnut.jpg in Resources */,
 				0A91CA061AAF32F700D7B54D /* Main.storyboard in Resources */,
 			);

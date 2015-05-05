@@ -109,7 +109,7 @@
 
 -(void)createHUD{
     
-    mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - (300 + self.frame.size.width*0.02), self.frame.size.height*0.025, 300, 70)];
+    mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - (self.frame.size.width/3.3 + self.frame.size.width*0.02), self.frame.size.height*0.025, self.frame.size.width/3.3, self.frame.size.height * 0.1)];
     mainLabel.numberOfLines = 2;
     mainLabel.text = @"Wait for your turn!";
     mainLabel.transform = CGAffineTransformMakeScale(-1, -1);
@@ -120,9 +120,9 @@
     mainLabel.clipsToBounds = true;
     mainLabel.layer.borderWidth = 2;
     
-    mainLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - (300 + self.frame.size.width*0.02), self.frame.size.height - (80 + self.frame.size.height*0.025) ,300, 80)];
+    mainLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - (self.frame.size.width/3.3 + self.frame.size.width*0.02), self.frame.size.height - (self.frame.size.height * 0.1 + self.frame.size.height*0.025) ,self.frame.size.width/3.3, self.frame.size.height * 0.1)];
     mainLabel2.numberOfLines = 2;
-    mainLabel2.text = @"Chose which piece you will move";
+    mainLabel2.text = @"Choose which piece you will move";
     mainLabel2.textAlignment = NSTextAlignmentCenter;
     mainLabel2.font = [UIFont fontWithName:@"Superclarendon" size:18];
     mainLabel2.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
@@ -133,7 +133,7 @@
 
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipPhaseOfPlayerOne)];
 
-    actionLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width*0.05, self.frame.size.height*0.025, 100, 100)];
+    actionLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width*0.05, self.frame.size.height*0.025, self.frame.size.width*0.1, self.frame.size.width*0.1)];
     actionLabel.backgroundColor = [UIColor colorWithRed:0.863 green:0.078 blue:0.235 alpha:1];
     actionLabel.userInteractionEnabled = YES;
     actionLabel.transform = CGAffineTransformMakeScale(-1, -1);
@@ -146,7 +146,7 @@
     
     UITapGestureRecognizer* tapGesture2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipPhaseOfPlayerTwo)];
 
-    actionLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width*0.05, self.frame.size.height - (100 + self.frame.size.height*0.025), 100, 100)];
+    actionLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width*0.05, self.frame.size.height - (self.frame.size.width*0.1 + self.frame.size.height*0.025), self.frame.size.width*0.1, self.frame.size.width*0.1)];
     actionLabel2.backgroundColor = [UIColor colorWithRed:0.863 green:0.078 blue:0.235 alpha:1];
     actionLabel2.userInteractionEnabled = YES;
     actionLabel2.layer.cornerRadius = 50;
@@ -162,7 +162,7 @@
     
     detailsLabel = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel.frame.origin.y + mainLabel.frame.size.height + self.frame.size.height*0.025, mainLabel.frame.size.width, 130)];
     detailsLabel.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
-    detailsLabel.numberOfLines = 4;
+    detailsLabel.numberOfLines = 5;
     detailsLabel.userInteractionEnabled = YES;
     detailsLabel.transform = CGAffineTransformMakeScale(-1, -1);
     detailsLabel.layer.cornerRadius = 5;
@@ -174,7 +174,7 @@
     
     detailsLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(mainLabel.frame.origin.x, mainLabel2.frame.origin.y - self.frame.size.height*0.025 - detailsLabel.frame.size.height, mainLabel.frame.size.width, 130)];
     detailsLabel2.backgroundColor = [UIColor colorWithRed:0.933 green:0.875 blue:0.651 alpha:1];
-    detailsLabel2.numberOfLines = 4;
+    detailsLabel2.numberOfLines = 5;
     detailsLabel2.userInteractionEnabled = YES;
     detailsLabel2.layer.cornerRadius = 5;
     detailsLabel2.clipsToBounds = YES;
@@ -183,7 +183,7 @@
     detailsLabel2.font = [UIFont fontWithName:@"Superclarendon" size:15];
     detailsLabel2.layer.borderWidth = 2;
     
-    UILabel *rulesLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width *0.02, self.frame.size.height/2 - 50, 100, 100)];
+    UILabel *rulesLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width *0.02, self.frame.size.height/2 - self.frame.size.width*0.05, self.frame.size.width*0.1, self.frame.size.width*0.1)];
     rulesLabel.backgroundColor = [UIColor colorWithRed:0.863 green:0.078 blue:0.235 alpha:1];
     rulesLabel.userInteractionEnabled = YES;
     rulesLabel.layer.cornerRadius = 50;
@@ -197,7 +197,7 @@
     UITapGestureRecognizer *showRules = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showRulesScreen)];
     [rulesLabel addGestureRecognizer:showRules];
     
-    UILabel *restartLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - self.frame.size.width *0.02 - 100, self.frame.size.height/2 - 50, 100, 100)];
+    UILabel *restartLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width - self.frame.size.width *0.02 - self.frame.size.width*0.1, self.frame.size.height/2 - self.frame.size.width*0.05, self.frame.size.width*0.1, self.frame.size.width*0.1)];
     restartLabel.backgroundColor = [UIColor colorWithRed:0.863 green:0.078 blue:0.235 alpha:1];
     restartLabel.userInteractionEnabled = YES;
     restartLabel.layer.cornerRadius = 50;
@@ -337,30 +337,11 @@
     [self.view addGestureRecognizer:checkPiece];
 }
 
--(void)showPieceInfo:(UISwipeGestureRecognizer*)recognizer{
-    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
-    touchLocation = [self convertPointFromView:touchLocation];
-    SKCell *temp;
-    for (int i = 0; i < cellArray.count; i++){
-        temp = cellArray[i];
-        if ([temp containsPoint:touchLocation] && temp.currentPiece != nil){
-            NSString *text = [[NSString alloc]initWithFormat:@"%@ \n Hp: %d \n Damage: %d \n Movespeed: %d", temp.currentPiece.convertToString, temp.currentPiece.hitPoints, temp.currentPiece.attackDamage, temp.currentPiece.moveSpeed];
-            if(!temp.currentPiece.player)
-                detailsLabel.text = text;
-            else
-                detailsLabel2.text = text;
-        }
-    }
-
-
-}
-
 -(void)skipPhaseOfPlayerOne{
     if (blackPlays){
         NSLog(@"Start of skipPhase, turnPhase is %d", currentPhase);
         detailsLabel.text = @"Swipe left to check piece info";
     if (currentPhase == ChoseMove || currentPhase == ChoseDirection){
-        [self unHighlightCells];
         [self unHighlightAllCells];
         if ([self checkPossibleAttacksOfPlayer:blackPlays]){
             
@@ -454,10 +435,11 @@
         detailsLabel2.text = @"Swipe right to check piece info";
 
         if (currentPhase == ChoseMove || currentPhase == ChoseDirection){
+            NSLog(@"Entrou1");
             [self unHighlightCells];
             [self unHighlightAllCells];
+            NSLog(@"Entrou1-1");
             if ([self checkPossibleAttacksOfPlayer:blackPlays]){
-                
                 NSLog(@"Attack of skipPhase, turnPhase is %d", currentPhase);
                 currentPhase = ChoseAttacker;
                 [self labelTextForTurnPhase];
@@ -478,7 +460,8 @@
                 return;
                 
             } else {
-                
+                NSLog(@"Entrou3");
+
                 blackPlays = !blackPlays;
                 currentPhase = ChoseMove;
                 [self labelTextForTurnPhase];
@@ -595,7 +578,7 @@
         [currentCell runAction:[SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0.0f duration:0.0f]];
     }
     currentCell = cell;
-    NSString *text = [[NSString alloc]initWithFormat:@"%@ \n Hp: %d \n Damage: %d \n Movespeed: %d", currentCell.currentPiece.convertToString, currentCell.currentPiece.hitPoints, currentCell.currentPiece.attackDamage, currentCell.currentPiece.moveSpeed];
+    NSString *text = [[NSString alloc]initWithFormat:@"%@ \n Hp: %d \n Damage: %d \n Movespeed: %d \n Range: %d - %d", currentCell.currentPiece.convertToString, currentCell.currentPiece.hitPoints, currentCell.currentPiece.attackDamage, currentCell.currentPiece.moveSpeed, currentCell.currentPiece.rangeMin, currentCell.currentPiece.rangeMax];
     if(!currentCell.currentPiece.player)
         detailsLabel.text = text;
     else
@@ -614,9 +597,10 @@
 
 -(BOOL)checkPossibleAttacksOfPlayer:(int)player{
     SKCell *tempCell;
-    
+    if (lastCell != nil){
     SKAction * unSelect = [SKAction setTexture:lastCell.cellTexture];
     [lastCell runAction:unSelect];
+    }
     hasAttacker = false;
     [possibleCellsArray removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
@@ -746,6 +730,7 @@
 
 -(BOOL)showTowerTargetsOfPlayer:(Player)player{
     SKCell * tempCell;
+    NSLog(@"Hey");
     [possibleTowerTargets removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
@@ -1026,6 +1011,13 @@
             actionIsSimple = false;
             break;
         }
+        case TreeGiant:
+        {
+            currentCell = actionCell;
+            [self highlightAttackOptionsOfCell:actionCell withRangeMin:1 andMax:2];
+            actionIsSimple = false;
+            break;
+        }
         case InfantrySaboteur:
         {
             [self highlightSurroundingsOfCell:actionCell];
@@ -1136,8 +1128,8 @@
                 SKAction *burnUp = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:1 duration:0.4f];
                 SKAction *burnDown = [SKAction setTexture:tempCell.cellTexture];
                 [tempCell runAction:burnUp completion:^{[tempCell runAction:burnDown];}];
-                tempCell.currentPiece.hitPoints -= 5 * tempCell.currentPiece.fireDamageMultiplier;
-                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Dragon has burned %@ with 5 fire damage. ",tempCell.currentPiece.convertToString ];
+                tempCell.currentPiece.hitPoints -= 7 * tempCell.currentPiece.fireDamageMultiplier;
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The Dragon has burned %@ with 7 fire damage. ",tempCell.currentPiece.convertToString ];
                
                 if (tempCell.currentPiece.hitPoints <= 0){
                     [tempCell removeAllChildren];
@@ -1153,6 +1145,29 @@
         }
         
     }
+    
+    if (actionCell.currentPiece.pieceType == TreeGiant){
+        SKCell * tempCell;
+        for (int i = 0; i < possibleCellsArray.count; i++){
+            tempCell = possibleCellsArray[i];
+            if ([tempCell containsPoint:positionInScene]){
+                tempCell.currentPiece.hitPoints -= 5 ;
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The TreeGiant has attacked %@ with 7 fire damage. ",tempCell.currentPiece.convertToString ];
+                
+                if (tempCell.currentPiece.hitPoints <= 0){
+                    [tempCell removeAllChildren];
+                    tempCell.currentPiece = nil;
+                }
+                if (blackPlays)
+                    detailsLabel.text = text;
+                else
+                    detailsLabel2.text = text;
+            }
+            
+        }
+        
+    }
+
     [self unHighlightAllCells];
     [self unHighlightCells];
     currentPhase = ChoseMove;
@@ -1879,6 +1894,24 @@
     }
 }
 
+-(void)showPieceInfo:(UISwipeGestureRecognizer*)recognizer{
+    CGPoint touchLocation = [recognizer locationInView:recognizer.view];
+    touchLocation = [self convertPointFromView:touchLocation];
+    SKCell *temp;
+    for (int i = 0; i < cellArray.count; i++){
+        temp = cellArray[i];
+        if ([temp containsPoint:touchLocation] && temp.currentPiece != nil){
+            NSString *text = [[NSString alloc]initWithFormat:@"%@ \n Hp: %d \n Damage: %d \n Movespeed: %d\n Range: %d - %d", temp.currentPiece.convertToString, temp.currentPiece.hitPoints, temp.currentPiece.attackDamage, temp.currentPiece.moveSpeed, temp.currentPiece.rangeMin, temp.currentPiece.rangeMax];
+            if(!temp.currentPiece.player)
+                detailsLabel.text = text;
+            else
+                detailsLabel2.text = text;
+        }
+    }
+    
+    
+}
+
 -(void)pieceForCell:(SKCell*)cell{
     SKPiece *newPiece;
     Player player =  cell.line < 10? Black:White;
@@ -1912,7 +1945,7 @@
                 newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
                 break;
             case 6:
-                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryTemplar ofPlayer:player];
                 break;
             case 7:
                 newPiece = [SKPiece initPieceOfType:Dragon ofPlayer:player];
@@ -1921,7 +1954,7 @@
                 newPiece = [SKPiece initPieceOfType:DragonSlayer ofPlayer:player];
                 break;
             case 9:
-                newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:ChivalryArcher ofPlayer:player];
                 break;
             case 10:
                 newPiece = [SKPiece initPieceOfType:Archer ofPlayer:player];
@@ -1938,10 +1971,10 @@
                 newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
                 break;
             case 7:
-                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:Infantry ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
@@ -1961,10 +1994,10 @@
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
                 break;
             case 7:
-                newPiece = [SKPiece initPieceOfType:FireMage ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantrySaboteur ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:LightMage ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
