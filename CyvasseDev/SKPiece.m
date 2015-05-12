@@ -14,7 +14,6 @@
 
     SKPiece *newPiece;
     newPiece.canAttack = true;
-    
     if (type == 0){
         newPiece = player? [SKPiece spriteNodeWithImageNamed:@"king.png"]:[SKPiece spriteNodeWithImageNamed:@"altking.png"];
         newPiece.player = player;
@@ -318,7 +317,7 @@
     }
     if (type == 16){
         
-        /* Barrier */
+        /* Engineer */
         
         newPiece =  player? [SKPiece spriteNodeWithImageNamed:@"pawn"]:[SKPiece spriteNodeWithImageNamed:@"altpawn"];
         newPiece.player = player;
@@ -332,7 +331,7 @@
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
         newPiece.arrowDamageMultiplier = 0;
-        newPiece.hasAction = false;
+        newPiece.hasAction = true;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
     }
@@ -397,9 +396,29 @@
         
         
     }
+    
+    if (type == 20){
+        
+        /* Barrier */
+        
+        newPiece = [SKPiece spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(35, 35)];
+        newPiece.pieceType = type;
+        newPiece.moveSpeed = 0;
+        newPiece.hitPoints = 10;
+        newPiece.attackDamage = 0;
+        newPiece.rangeMin = 0;
+        newPiece.rangeMax = 0;
+        newPiece.fireDamageMultiplier = 1.5;
+        newPiece.fireDamage = 0;
+        newPiece.arrowDamageMultiplier = 0;
+        newPiece.maxHitPoints = newPiece.hitPoints;
+        
+        
+    }
     return newPiece;
 
 }
+
 
 - (void)performActionForPiece{
 
@@ -410,64 +429,46 @@
     switch (self.pieceType) {
         case 0:
             return @"King";
-            break;
         case 1:
             return @"Soldier";
-            break;
         case 2:
             return @"Archer";
-            break;
         case 3:
             return @"Scout";
-            break;
         case 4:
             return @"Fire Mage";
-            break;
         case 5:
             return @"Light Mage";
-            break;
         case 6:
             return @"Royal Guard";
-            break;
         case 7:
             return @"Dragon";
-            break;
         case 8:
             return @"Dragon Slayer";
-            break;
         case 9:
             return @"Tower";
-            break;
         case 10:
             return @"Catapult";
-            break;
         case 11:
             return @"Sniper";
-            break;
         case 12:
             return @"Incendiary Archer";
-            break;
         case 13:
             return @"Crossbow Man";
-            break;
         case 14:
             return @"Mounted Archer";
-            break;
         case 15:
             return @"Templar";
-            break;
         case 16:
             return @"Shield Man";
-            break;
         case 17:
             return @"Saboteur";
-            break;
         case 18:
             return @"Stone Giant";
-            break;
         case 19:
             return @"Tree Giant";
-            break;
+        case 20:
+            return @"Barrier";
     }
 }
 

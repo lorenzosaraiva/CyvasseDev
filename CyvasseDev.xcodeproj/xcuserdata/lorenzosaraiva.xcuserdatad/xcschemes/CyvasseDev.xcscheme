@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A91C9F11AAF32F700D7B54D"
-               BuildableName = "CyvasseDev.app"
+               BuildableName = "GigasBellum.app"
                BlueprintName = "CyvasseDev"
                ReferencedContainer = "container:CyvasseDev.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A91C9F11AAF32F700D7B54D"
-            BuildableName = "CyvasseDev.app"
+            BuildableName = "GigasBellum.app"
             BlueprintName = "CyvasseDev"
             ReferencedContainer = "container:CyvasseDev.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A91C9F11AAF32F700D7B54D"
-            BuildableName = "CyvasseDev.app"
+            BuildableName = "GigasBellum.app"
             BlueprintName = "CyvasseDev"
             ReferencedContainer = "container:CyvasseDev.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A91C9F11AAF32F700D7B54D"
-            BuildableName = "CyvasseDev.app"
+            BuildableName = "GigasBellum.app"
             BlueprintName = "CyvasseDev"
             ReferencedContainer = "container:CyvasseDev.xcodeproj">
          </BuildableReference>

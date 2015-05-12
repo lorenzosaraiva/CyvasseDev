@@ -1028,6 +1028,13 @@
             actionIsSimple = false;
             break;
         }
+        case InfantryBarrier:
+        {
+            currentCell = actionCell;
+            [self highlightOptionsOfCell:actionCell];
+            actionIsSimple = false;
+            break;
+        }
         case InfantrySaboteur:
         {
             [self highlightSurroundingsOfCell:actionCell];
@@ -1184,6 +1191,28 @@
         }
         
     }
+    
+    if (actionCell.currentPiece.pieceType == InfantryBarrier){
+        SKCell * tempCell;
+        for (int i = 0; i < possibleCellsArray.count; i++){
+            tempCell = possibleCellsArray[i];
+            if ([tempCell containsPoint:positionInScene]){
+                NSMutableString *text = [[NSMutableString alloc]initWithFormat:@"The engineer has built a barrier!"];
+                SKPiece *barrier = [SKPiece initPieceOfType:Barrier ofPlayer:0];
+                barrier.player = !blackPlays;
+                barrier.zPosition = 0.1f;
+                [tempCell addChild:barrier];
+                tempCell.currentPiece = barrier;
+                if (blackPlays)
+                    detailsLabel.text = text;
+                else
+                    detailsLabel2.text = text;
+            }
+            
+        }
+        
+    }
+
     
     if (actionCell.currentPiece.pieceType == DragonSlayer){
         SKCell * tempCell;
@@ -2003,6 +2032,15 @@
                     [tempCell runAction:[SKAction setTexture:red]];
                     [possibleActionCells addObject:tempCell];
                     break;
+                case InfantryBarrier:
+                    [self highlightOptionsOfCell:tempCell];
+                    NSLog(@"entrou");
+                    if (possibleCellsArray.count == 0){
+                        continue;
+                    }
+                    [tempCell runAction:[SKAction setTexture:red]];
+                    [possibleActionCells addObject:tempCell];
+                    break;
                 case TreeGiant:
                     [self highlightAttackOptionsOfCell:tempCell withRangeMin:1 andMax:2];
                     if (possibleCellsArray.count == 0){
@@ -2248,10 +2286,10 @@
                 newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
                 break;
             case 7:
-                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryBarrier ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryBarrier ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:Catapult ofPlayer:player];
@@ -2274,7 +2312,7 @@
                 newPiece = [SKPiece initPieceOfType:InfantrySaboteur ofPlayer:player];
                 break;
             case 8:
-                newPiece = [SKPiece initPieceOfType:InfantryShield ofPlayer:player];
+                newPiece = [SKPiece initPieceOfType:InfantryBarrier ofPlayer:player];
                 break;
             case 9:
                 newPiece = [SKPiece initPieceOfType:ChivalryScout ofPlayer:player];
