@@ -13,7 +13,8 @@
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player{
 
     SKPiece *newPiece;
-    newPiece.canAttack = true;
+    newPiece.turnsToAttack = 0;
+    newPiece.turnsToAction = 0;
     if (type == 0){
         newPiece = player? [SKPiece spriteNodeWithImageNamed:@"king.png"]:[SKPiece spriteNodeWithImageNamed:@"altking.png"];
         newPiece.player = player;
@@ -208,11 +209,11 @@
         newPiece.size = CGSizeMake(40, 40);
         newPiece.hitPoints = 3;
         newPiece.attackDamage = 10;
-        newPiece.rangeMin = 1;
-        newPiece.rangeMax = 2;
+        newPiece.rangeMin = 2;
+        newPiece.rangeMax = 3;
         newPiece.fireDamageMultiplier = 2;
         newPiece.fireDamage = 0;
-        newPiece.arrowDamageMultiplier = 0;
+        newPiece.arrowDamageMultiplier = 0.5;
         newPiece.maxHitPoints = newPiece.hitPoints;
 
     }
@@ -330,7 +331,7 @@
         newPiece.rangeMax = 1;
         newPiece.fireDamageMultiplier = 1;
         newPiece.fireDamage = 0;
-        newPiece.arrowDamageMultiplier = 0;
+        newPiece.arrowDamageMultiplier = 1.5;
         newPiece.hasAction = true;
         newPiece.maxHitPoints = newPiece.hitPoints;
         
@@ -416,11 +417,6 @@
         
     }
     return newPiece;
-
-}
-
-
-- (void)performActionForPiece{
 
 }
 

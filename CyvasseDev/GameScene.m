@@ -322,6 +322,7 @@
     positionInScene = [self convertPointFromView:positionInScene];
     
     switch (currentPhase) {
+
         case ChoseMove:
             [self checkSelectedCell:positionInScene ofPlayer:blackPlays? Black:White];
             break;
@@ -376,7 +377,7 @@
 
         } else {
         
-            blackPlays = !blackPlays;
+            [self changeTurn];
             currentPhase = ChoseMove;
             [self labelTextForTurnPhase];
             return;
@@ -400,7 +401,7 @@
                 
             } else {
                 [self unHighlightAllCells];
-                blackPlays = !blackPlays;
+                [self changeTurn];
                 currentPhase = ChoseMove;
                 [self labelTextForTurnPhase];
                 return;
@@ -419,7 +420,7 @@
             
         } else {
             [self unHighlightAllCells];
-            blackPlays = !blackPlays;
+            [self changeTurn];
             currentPhase = ChoseMove;
             [self labelTextForTurnPhase];
             return;
@@ -431,7 +432,7 @@
         [self unHighlightCells];
         [self unHighlightCellsOfAction];
         [self unHighlightAllCells];
-        blackPlays = !blackPlays;
+        [self changeTurn];
         currentPhase = ChoseMove;
         [self labelTextForTurnPhase];
     
@@ -473,7 +474,7 @@
             } else {
                 NSLog(@"Entrou3");
 
-                blackPlays = !blackPlays;
+                [self changeTurn];
                 currentPhase = ChoseMove;
                 [self labelTextForTurnPhase];
                 return;
@@ -498,7 +499,7 @@
                 
             } else {
                 [self unHighlightAllCells];
-                blackPlays = !blackPlays;
+                [self changeTurn];
                 currentPhase = ChoseMove;
                 [self labelTextForTurnPhase];
                 return;
@@ -518,7 +519,7 @@
                 
             } else {
                 [self unHighlightAllCells];
-                blackPlays = !blackPlays;
+                [self changeTurn];
                 currentPhase = ChoseMove;
                 [self labelTextForTurnPhase];
                 return;
@@ -530,7 +531,7 @@
             [self unHighlightCells];
             [self unHighlightCellsOfAction];
             [self unHighlightAllCells];
-            blackPlays = !blackPlays;
+            [self changeTurn];
             currentPhase = ChoseMove;
             [self labelTextForTurnPhase];
             
@@ -552,6 +553,27 @@
     [self generalInitiation];
     [self createMap];
     [self createHUD];
+}
+
+-(void)changeTurn{
+    blackPlays = !blackPlays;
+    [self updateCooldowns];
+}
+
+-(void)updateCooldowns{
+    SKCell *tempCell;
+    for (int i = 0; i < cellArray.count; i++){
+        tempCell = cellArray[i];
+        
+        if (tempCell.currentPiece.player != blackPlays)
+            continue;
+        if (tempCell.currentPiece != nil && tempCell.currentPiece.turnsToAttack > 0){
+            tempCell.currentPiece.turnsToAttack--;
+        }
+        if (tempCell.currentPiece != nil && tempCell.currentPiece.turnsToAction > 0){
+            tempCell.currentPiece.turnsToAction--;
+        }
+    }
 }
 
 #pragma mark - SelectFunctions
@@ -615,7 +637,7 @@
     [possibleCellsArray removeAllObjects];
     for (int i = 0; i < cellArray.count; i++){
         tempCell = [cellArray objectAtIndex:i];
-        if (tempCell.currentPiece.player == player || tempCell.currentPiece.pieceType == Tower)
+        if (tempCell.currentPiece.player == player || tempCell.currentPiece.pieceType == Tower || tempCell.currentPiece.turnsToAttack != 0)
             continue;
         [self highlightAttackOptionsOfCell:tempCell withRangeMin:tempCell.currentPiece.rangeMin andMax:tempCell.currentPiece.rangeMax];
         if ( hasTarget == true ){
@@ -663,7 +685,7 @@
     }
     else{
         currentPhase = ChoseMove;
-        blackPlays = !blackPlays;
+        [self changeTurn];
         [self labelTextForTurnPhase];
 
     }
@@ -707,7 +729,7 @@
     else{
         [self unHighlightAllCells];
         currentPhase = ChoseMove;
-        blackPlays = !blackPlays;
+        [self changeTurn];
         [self labelTextForTurnPhase];
     }
     
@@ -800,7 +822,7 @@
     else
         detailsLabel2.text = text;
     NSLog(@"Piece one attacks piece two with %d damage. Piece two hp goes from %d -> %d", attacker.currentPiece.attackDamage, temp, target.currentPiece.hitPoints);
-
+    [self cooldownForPiece:attacker.currentPiece];
     
     if (target.currentPiece.hitPoints <= 0){
         [target removeAllChildren];
@@ -812,6 +834,24 @@
         }
 }
 
+
+-(void)cooldownForPiece:(SKPiece*)piece{
+
+    switch (piece.pieceType) {
+        case Catapult:
+            piece.turnsToAttack = 2;
+            break;
+        case InfantryBarrier:
+            piece.turnsToAction = 2;
+            break;
+        case RoyalGuard:
+            piece.turnsToAction = 2;
+            break;
+        default:
+            break;
+    }
+
+}
 #pragma mark - MoveFunctions
 
 -(void)movePiece:(SKPiece*)piece ToCell:(CGPoint)positionInScene{
@@ -861,7 +901,7 @@
                             [self labelTextForTurnPhase];
                         }else{
                             currentPhase = ChoseMove;
-                            blackPlays = !blackPlays;
+                            [self changeTurn];
                             [self labelTextForTurnPhase];
                         }
                     }
@@ -921,7 +961,7 @@
         [self unHighlightCellsOfAction];
         [self unHighlightCells];
         currentPhase = ChoseMove;
-        blackPlays = !blackPlays;
+        [self changeTurn];
         [self labelTextForTurnPhase];
     }
     else{
@@ -1141,7 +1181,7 @@
             }
             
         }
-        
+        [self cooldownForPiece:actionCell.currentPiece];
     }
     
     if (actionCell.currentPiece.pieceType == Dragon){
@@ -1210,6 +1250,7 @@
             }
             
         }
+        [self cooldownForPiece:actionCell.currentPiece];
         
     }
 
@@ -1240,7 +1281,7 @@
     [self unHighlightAllCells];
     [self unHighlightCells];
     currentPhase = ChoseMove;
-    blackPlays = !blackPlays;
+    [self changeTurn];
     [self labelTextForTurnPhase];
 }
 
@@ -2021,7 +2062,7 @@
     for (int i = 0; i < cellArray.count; i++){
         tempCell = cellArray[i];
         [self unHighlightCells];
-        if (tempCell.currentPiece.hasAction && tempCell.currentPiece.player != player){
+        if (tempCell.currentPiece.hasAction && tempCell.currentPiece.player != player && tempCell.currentPiece.turnsToAction == 0){
             
             switch (tempCell.currentPiece.pieceType) {
                 case Dragon:

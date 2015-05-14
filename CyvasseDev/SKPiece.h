@@ -58,11 +58,11 @@ typedef enum SKMainClass{
 @property int fireDamageMultiplier;
 @property int arrowDamageMultiplier;
 @property int fireDamage;
-@property BOOL canAttack;
+@property int turnsToAttack;
+@property int turnsToAction;
 @property BOOL hasAction;
 
 + (instancetype) initPieceOfType:(PieceType)type ofPlayer:(int)player;
-- (void)performActionForPiece;
 - (NSString*)convertToString;
 
 @end
